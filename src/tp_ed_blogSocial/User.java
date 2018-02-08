@@ -91,6 +91,10 @@ public class User implements Comparable{
             
     }
     
+    public void publicarPost (Post post){
+        
+    }
+    
     
 
     
