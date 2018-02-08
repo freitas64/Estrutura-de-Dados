@@ -5,8 +5,10 @@
  */
 package tp_ed_blogSocial;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import recursos.*;
 import sun.util.calendar.LocalGregorianCalendar;
 
 
@@ -24,6 +26,8 @@ public class Post {
     };
     private Type type;
     
+    private ArrayStack<Comment> comentarios = new ArrayStack<>();
+    
     
     public Post (String post, String title, GregorianCalendar date, Type type){
             this.title = title;
@@ -35,6 +39,21 @@ public class Post {
     
     public Post(){
     
+    }
+    
+    public String getTitle (){
+        return title;
+    }
+    
+    public String getPost (){
+        return post;
+    }
+    
+    public String getDate(){
+    SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy");
+        
+        return sdf.format(date.getTime());
+       
     }
     
     

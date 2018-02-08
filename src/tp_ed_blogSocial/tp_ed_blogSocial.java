@@ -8,9 +8,7 @@ package tp_ed_blogSocial;
 import exception.ElementNotFoundException;
 import exception.EmptyCollectionException;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
-import sun.util.calendar.LocalGregorianCalendar;
 import static tp_ed_blogSocial.Post.Type.*;
 
 /**
@@ -21,6 +19,8 @@ public class tp_ed_blogSocial {
 
     /**
      * @param args the command line arguments
+     * @throws exception.EmptyCollectionException
+     * @throws exception.ElementNotFoundException
      */
     public static void main(String[] args) throws EmptyCollectionException, ElementNotFoundException {
         User user1 = new User("Rui", "rui@mail.com", "ruifreitas", 200);
@@ -41,18 +41,8 @@ public class tp_ed_blogSocial {
         user1.removeAmizade(user3);
         System.out.println("\nPedidos de Amizade");
         System.out.println(user1.getPedidos());
-        
-       GregorianCalendar evansBirthday = new GregorianCalendar(2018,02,8);
-        Post p1;
-        
-        p1 = new Post("asfsf","sadasd",new GregorianCalendar(2018, 02, 8) , privada);
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy");
-        System.out.println(sdf.format(new GregorianCalendar(2018, 02, 8).getTime()));
-       
-        
-        
-        
-        
+              
+        Post p1 = new Post("asfsf","sadasd",new GregorianCalendar(2018, 02, 8) , privada);
+        System.out.println (p1.getDate());
     }
-    
 }
