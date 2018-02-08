@@ -9,6 +9,6 @@ package tp_ed_blogSocial;
  *
  * @author ruifreitas
  */
-public class Message {
+public class Post {
     
 }

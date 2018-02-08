@@ -3,32 +3,39 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package adt;
 
+
+import exception.EmptyCollectionException;
+import java.util.Iterator;
+import tp_ed_blogSocial.User;
+
 /**
- *
- * @author tony
+ * @author Antonio Sanches 8070027
+ * @author José Teixeira 8080328
  * @param <T>
  */
-public interface NetworkADT<T> extends GraphADT<T>{
-    
-    
-   /**
-    * Inserts an edge between two vertices of this graph.
-    *
-    * @param vertex1  the first vertex
-    * @param vertex2  the second vertex
-    * @param weight   the weight
-    */
-   public void addEdge (T vertex1, T vertex2, double weight);
-   /**
-    
-    * Returns the weight of the shortest path in this network.
-    *
-    * @param vertex1  the first vertex
-    * @param vertex2  the second vertex
-    * @return         the weight of the shortest path in this network
-    */
-   public double shortestPathWeight(T vertex1, T vertex2);
+public interface NetworkADT<T> extends GraphADT<T> {
+
+    /**
+     * Adds a vertex to this graph, associating object with vertex.
+     *
+     * @param pessoa
+     */
+    public void addVertex(User pessoa);
+
+    public void removeVertex(User pessoa) throws EmptyCollectionException;;
+
+    public void addEdge(User pessoa1, User pessoa2) throws EmptyCollectionException;
+
+    public void removeEdge(User pessoa1, User pessoa2) throws EmptyCollectionException;
+
+    public int getIndex(User pessoa);
+
+    public Iterator<T> iteratorLongtPath(User pessoa1, User pessoa2);
+
+    public Iterator<T> iteratorShortestPath(User pessoa1, User pessoa2);
+
+    public Iterator<T> iteratorBFS(User startVertex);
+
 }
