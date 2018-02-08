@@ -21,20 +21,20 @@ public class Post {
    
     private String post,title;
     private GregorianCalendar date;
-    public enum Type {
+    public enum Privacy {
      publica, privada
     };
-    private Type type;
+    private Privacy privacy;
     
     private final ArrayStack<Comment> comentarios;
     
     
-    public Post (String post, String title, GregorianCalendar date, Type type){
+    public Post (String post, String title, GregorianCalendar date, Privacy privacy){
             this.comentarios = new ArrayStack<>();
             this.title = title;
             this.post =post;
             this.date =date;
-            this.type = type;
+            this.privacy = privacy;
             
     }
     
@@ -56,12 +56,24 @@ public class Post {
         return sdf.format(date.getTime());
     }
     
-    public Type getType(){
-        return type;
+    public Privacy getPrivacy(){
+        return privacy;
     }
     
     public void ComentarPost(Comment comentario){
         this.comentarios.push(comentario);
+    }
+    
+    public void setPost(String post){
+        this.post = post;
+    }
+    
+    public void serTitle (String title) {
+        this.title = title;
+    }
+    
+    public void setPrivacy (Privacy privacy){
+        this.privacy = privacy;
     }
     
     
