@@ -20,6 +20,13 @@ public class tp_ed_blogSocial {
         System.out.println(user1.toString());
         System.out.println("\n");
         System.out.println(user2.toString());
+        user1.ReceiveRequest(user2);
+        
+        System.out.println("\nPedidos de Amizade");
+        System.out.println(user1.getPedidos());
+        
+        
+        
     }
     
 }

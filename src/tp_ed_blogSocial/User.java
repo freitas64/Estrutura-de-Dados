@@ -5,19 +5,19 @@
  */
 package tp_ed_blogSocial;
 
-import java.util.LinkedList;
+import  recursos.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 /**
  *
  * @author ruifreitas
  */
-public class User  {
+public class User implements Comparable{
     private static final AtomicLong NEXT_ID = new AtomicLong(1);
     private final long id = NEXT_ID.getAndIncrement();
     private String name,email, username;
     private long credits;
-    LinkedList<User> pedidosAmizade = new LinkedList<>();
+    ArrayOrderedList<User> pedidosAmizade = new ArrayOrderedList(100);
     
     
 
@@ -26,6 +26,7 @@ public class User  {
         this.username = username;
         this.email = email;
         this.credits = credits;
+       
     }
     
     public User() {
@@ -73,9 +74,25 @@ public class User  {
         return "ID: "+id+"\nNome: "+name+"\nUsername: "+username
                 +"\nE-mail: "+email+"\nCréditos: "+credits;
     }
-    public User ReceiveRequest (User request){
-        return null;
+    public void ReceiveRequest (User request){
+        pedidosAmizade.add(request);
+    }
     
+    public ArrayOrderedList getPedidos(){
+        return pedidosAmizade;
+    }
+
+    
+
+    @Override
+    public int compareTo(Object other) {
+        int result;
+        if (name.equals(((User) other).name)) {
+            result = name.compareTo(((User) other).name);
+        } else {
+            result = username.compareTo(((User) other).username);
+        }
+        return result;
     }
    
 }
