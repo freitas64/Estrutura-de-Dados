@@ -5,6 +5,7 @@
  */
 package tp_ed_blogSocial;
 
+import exception.ElementNotFoundException;
 import  recursos.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -78,9 +79,19 @@ public class User implements Comparable{
         pedidosAmizade.add(request);
     }
     
+    public void removeAmizade(User user) throws ElementNotFoundException{
+     pedidosAmizade.remove(user);
+    }
+    
     public ArrayOrderedList getPedidos(){
         return pedidosAmizade;
     }
+    
+    public void aceitarPedido (){
+            
+    }
+    
+    
 
     
 
