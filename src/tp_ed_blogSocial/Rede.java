@@ -15,8 +15,8 @@
 //import java.util.logging.Logger;
 //
 ///**
-// * @author Antonio Sanches 8070027
-// * @author José Teixeira 8080328
+// * @author Rui Freitas 8060071
+// * 
 // * @param <T>
 // */
 //public class Rede<T> extends Graph<T> implements NetworkADT<T> {

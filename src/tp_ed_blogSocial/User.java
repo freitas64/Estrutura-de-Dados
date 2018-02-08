@@ -75,7 +75,7 @@ public class User implements Comparable{
         return "ID: "+id+"\nNome: "+name+"\nUsername: "+username
                 +"\nE-mail: "+email+"\nCréditos: "+credits;
     }
-    public void ReceiveRequest (User request){
+    public void FriendshipRequest (User request){
         pedidosAmizade.add(request);
     }
     

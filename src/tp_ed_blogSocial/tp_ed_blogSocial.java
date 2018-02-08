@@ -26,13 +26,16 @@ public class tp_ed_blogSocial {
         User user1 = new User("Rui", "rui@mail.com", "ruifreitas", 200);
         User user2 = new User("RuiMiguel", "ruasdasi@mail.com", "ruifasdasdreitas", 250);
         User user3 = new User("RuiMiguel21321", "ruasdasi@mail.com", "ruifasdasdreitas", 250);
+         User user4 = new User("CoisaAnaMiguel21321", "ana@mail.com", "anafilipa", 2220);
+        
         System.out.println(user1.toString());
         System.out.println("\n");
         System.out.println(user2.toString());
         System.out.println("\n");
         System.out.println(user3.toString());
-        user1.ReceiveRequest(user2);
-        user1.ReceiveRequest(user3);
+        user1.FriendshipRequest(user2);
+        user1.FriendshipRequest(user3);
+        user1.FriendshipRequest(user4);
         
         
         System.out.println("\nPedidos de Amizade Sem remove");
