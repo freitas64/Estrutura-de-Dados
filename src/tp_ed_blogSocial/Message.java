@@ -3,12 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp_ed_recurso;
+package tp_ed_blogSocial;
 
 /**
  *
  * @author ruifreitas
  */
-public class Comment {
+public class Message {
     
 }
