@@ -19,10 +19,12 @@ public class User implements Comparable{
     private String name,email, username;
     private long credits;
     ArrayOrderedList<User> pedidosAmizade = new ArrayOrderedList(100);
+    LinkedStack<Post> posts = new LinkedStack<>();
     
     
 
     public User(String name, String email, String username, int credits) {
+        
         this.name = name;
         this.username = username;
         this.email = email;
@@ -31,6 +33,7 @@ public class User implements Comparable{
     }
     
     public User() {
+        
 
     }
     
@@ -92,7 +95,11 @@ public class User implements Comparable{
     }
     
     public void publicarPost (Post post){
-        
+        posts.push(post);
+    }
+    
+    public LinkedStack getPosts (){
+       return posts;
     }
     
     

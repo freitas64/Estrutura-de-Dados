@@ -46,8 +46,17 @@ public class tp_ed_blogSocial {
         System.out.println(user1.getPedidos());
               
         Post p1 = new Post("asfsf","sadasd",new GregorianCalendar(2018, 02, 8) , privada);
-        System.out.println (p1.getPrivacy());
-        System.out.println (p1.getDate());
-        System.out.println (p1.getTitle());
+        Post p2 = new Post("post 2","post2",new GregorianCalendar(2018, 02, 8) , privada);
+        
+        
+        
+        Comment c1 = new Comment();
+        p1.ComentarPost(c1);
+        user1.publicarPost(p1);
+        user1.publicarPost(p2);
+        
+        System.out.println(user1.getPosts());
+        
+      
     }
 }

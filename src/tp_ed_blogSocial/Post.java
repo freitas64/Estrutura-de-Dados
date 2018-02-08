@@ -16,7 +16,7 @@ import sun.util.calendar.LocalGregorianCalendar;
  *
  * @author ruifreitas
  */
-public class Post {
+public class Post implements Comparable {
     
    
     private String post,title;
@@ -64,6 +64,10 @@ public class Post {
         this.comentarios.push(comentario);
     }
     
+    public ArrayStack getComments(){
+        return comentarios;
+    }
+    
     public void setPost(String post){
         this.post = post;
     }
@@ -76,5 +80,21 @@ public class Post {
         this.privacy = privacy;
     }
     
+    @Override
+    public int compareTo(Object other) {
+        int result;
+        if (title.equals(((Post) other).title)) {
+            result = title.compareTo(((Post) other).title);
+        } else {
+            result = post.compareTo(((Post) other).post);
+        }
+        return result;
+    }
     
+    @Override
+    public String toString() {
+         
+        return "Title: "+title+"\nCorpo: "+post+"\nPrivacidade: "+privacy
+                +"\nData: "+getDate()+"\n";
+    }
 }
