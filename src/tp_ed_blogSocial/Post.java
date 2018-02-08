@@ -26,10 +26,11 @@ public class Post {
     };
     private Type type;
     
-    private ArrayStack<Comment> comentarios = new ArrayStack<>();
+    private final ArrayStack<Comment> comentarios;
     
     
     public Post (String post, String title, GregorianCalendar date, Type type){
+            this.comentarios = new ArrayStack<>();
             this.title = title;
             this.post =post;
             this.date =date;
@@ -38,6 +39,7 @@ public class Post {
     }
     
     public Post(){
+        this.comentarios = new ArrayStack<>();
     
     }
     
@@ -50,10 +52,16 @@ public class Post {
     }
     
     public String getDate(){
-    SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy");
-        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy");
         return sdf.format(date.getTime());
-       
+    }
+    
+    public Type getType(){
+        return type;
+    }
+    
+    public void ComentarPost(Comment comentario){
+        this.comentarios.push(comentario);
     }
     
     

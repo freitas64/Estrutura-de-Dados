@@ -43,6 +43,6 @@ public class tp_ed_blogSocial {
         System.out.println(user1.getPedidos());
               
         Post p1 = new Post("asfsf","sadasd",new GregorianCalendar(2018, 02, 8) , privada);
-        System.out.println (p1.getDate());
+        System.out.println (p1.getType());
     }
 }
