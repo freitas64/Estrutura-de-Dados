@@ -58,19 +58,26 @@ public class tp_ed_blogSocial {
         
         System.out.println(user1.getPosts());
         Iterator<User> it;
-        Rede rede = new Rede();
+       
+        Rede r = new Rede();
         
-        rede.addVertex(user1);
-        rede.addVertex(user4);
-        rede.addVertex(user3);
-        rede.addVertex(user2);
+        r.addVertex(user1);
+        r.addVertex(user4);
+        r.addVertex(user3);
+        r.addVertex(user2);
         
-        rede.addEdge(user1, user2);
-        rede.addEdge(user2, user1);
-        rede.addEdge(user3, user2);
-         rede.addEdge(user2, user3);
+        r.addEdge(user1, user2);
+        
+         r.addEdge(user3, user1);
+        
+        r.addEdge(user3, user2);
          
-        rede.imprimeTudo();
+        
+        System.out.println("\n---------------------------------------------------------------------------------------------------------------------------------\n");
+      
+        r.imprimeDados(user1);
+
+    
        
       
     }
