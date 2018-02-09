@@ -9,6 +9,7 @@ import exception.ElementNotFoundException;
 import exception.EmptyCollectionException;
 import java.text.SimpleDateFormat;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import static tp_ed_blogSocial.Post.Privacy.*;
 
 /**
@@ -46,17 +47,31 @@ public class tp_ed_blogSocial {
         System.out.println(user1.getPedidos());
               
         Post p1 = new Post("asfsf","sadasd",new GregorianCalendar(2018, 02, 8) , privada);
-        Post p2 = new Post("post 2","post2",new GregorianCalendar(2018, 02, 8) , privada);
+        Post p2 = new Post("post 2","post2",new GregorianCalendar(2018, 11, 8) , privada);
         
         
         
         Comment c1 = new Comment();
         p1.ComentarPost(c1);
-        user1.publicarPost(p1);
+        user1.publicarPost(new Post("Mensagem ", "Teste", new GregorianCalendar(2018, 11, 1), publica));
         user1.publicarPost(p2);
         
         System.out.println(user1.getPosts());
+        Iterator<User> it;
+        Rede rede = new Rede();
         
+        rede.addVertex(user1);
+        rede.addVertex(user4);
+        rede.addVertex(user3);
+        rede.addVertex(user2);
+        
+        rede.addEdge(user1, user2);
+        rede.addEdge(user2, user1);
+        rede.addEdge(user3, user2);
+         rede.addEdge(user2, user3);
+         
+        rede.imprimeTudo();
+       
       
     }
 }
