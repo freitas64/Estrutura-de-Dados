@@ -23,20 +23,31 @@ public interface RedeADT<T> extends GraphADT<T> {
      *
      * @param user
      */
-    public void addVertex(User user);
+    @Override
+    public void addVertex(T vertex);
 
-    public void removeVertex(User user) throws EmptyCollectionException;;
+    /**
+     *
+     * @param vertex
+     * @throws EmptyCollectionException
+     */
+    @Override
+    public void removeVertex(T vertex);
 
-    public void addEdge(User user1, User user2) throws EmptyCollectionException;
+    @Override
+    public void addEdge(T vertex1, T vertex2) throws EmptyCollectionException;
 
-    public void removeEdge(User user1, User user2) throws EmptyCollectionException;
+    @Override
+    public void removeEdge(T vertex1, T vertex2) throws EmptyCollectionException;
 
-    public int getIndex(User user);
+    public int getIndex(T vertex);
 
-    public Iterator<T> iteratorLongtPath(User  user1, User  user2);
+    public Iterator<T> iteratorLongtPath(T  vertex1, T  vertex2);
 
-    public Iterator<T> iteratorShortestPath(User user1, User  user2);
+    @Override
+    public Iterator<T> iteratorShortestPath(T vertex1, T  vertex2);
 
-    public Iterator<T> iteratorBFS(User  startVertex);
+    @Override
+    public Iterator<T> iteratorBFS(T  startVertex);
 
 }

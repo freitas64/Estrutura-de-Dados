@@ -26,11 +26,11 @@ public class Post implements Comparable {
     };
     private Privacy privacy;
     
-    private final ArrayStack<Comment> comentarios;
+    private final LinkedList<Comment> comentarios = new LinkedList<>();
     
     
     public Post (String post, String title, GregorianCalendar date, Privacy privacy){
-            this.comentarios = new ArrayStack<>();
+           
             this.title = title;
             this.post =post;
             this.date =date;
@@ -39,7 +39,7 @@ public class Post implements Comparable {
     }
     
     public Post(){
-        this.comentarios = new ArrayStack<>();
+        
     
     }
     
@@ -61,10 +61,10 @@ public class Post implements Comparable {
     }
     
     public void ComentarPost(Comment comentario){
-        this.comentarios.push(comentario);
+        this.comentarios.addElemento(comentario);
     }
     
-    public ArrayStack getComments(){
+    public LinkedList getComments(){
         return comentarios;
     }
     
