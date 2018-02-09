@@ -5,14 +5,14 @@
  */
 package tp_ed_blogSocial;
 
+import adt.RedeSocialADT;
 import java.util.Iterator;
-import recursos.*;
 
 /**
  *
  * @author ruifreitas
  */
-public class RedeSocial extends Rede<User>{
+public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     
     /**
      * Return caminho directo
@@ -22,6 +22,7 @@ public class RedeSocial extends Rede<User>{
      * @return
      */
     
+    @Override
     public boolean isCaminhoTf(User user1, User user2) {
         return adjMatrix[getIndex(user1)][getIndex (user2)] < Double.POSITIVE_INFINITY;
     }
@@ -33,6 +34,7 @@ public class RedeSocial extends Rede<User>{
      * @param user2
      * @return
      */
+    @Override
     public String isCaminho(User user1, User user2) {
 
         Iterator<User> it;
@@ -57,6 +59,7 @@ public class RedeSocial extends Rede<User>{
     /**
      * Imprime todos as dados(utilizadores), existentes nos vertices.
      */
+    @Override
     public void imprimeTudo() {
 
         for (int i = 0; i < numVertices; i++) {
@@ -90,6 +93,7 @@ public class RedeSocial extends Rede<User>{
      *
      * @return
      */
+    @Override
     public String imprimetudoString() {
 
         al.clear();
@@ -129,6 +133,7 @@ public class RedeSocial extends Rede<User>{
      * @param u
      * @return
      */
+    @Override
     public String imprimeDadosSTring(User u) {
 
         al.clear();

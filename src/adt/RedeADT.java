@@ -3,13 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package tp_ed_blogSocial;
+package adt;
 
-import adt.*;
-import adt.GraphADT;
 import exception.EmptyCollectionException;
 import java.util.Iterator;
-import tp_ed_blogSocial.User;
+
 
 /**
  * @author Antonio Sanches 8070027
@@ -23,6 +21,7 @@ public interface RedeADT<T> extends GraphADT<T> {
      *
      * @param user
      */
+    @Override
     public void addVertex(T vertex);
 
     /**
@@ -33,16 +32,20 @@ public interface RedeADT<T> extends GraphADT<T> {
     @Override
     public void removeVertex(T vertex); /*throws EmptyCollectionException;*/
 
+    @Override
     public void addEdge(T vertex1, T vertex2) throws EmptyCollectionException;
 
+    @Override
     public void removeEdge(T vertex1, T vertex2) throws EmptyCollectionException;
 
     public int getIndex(T vertex);
 
     public Iterator<T> iteratorLongtPath(T  vertex1, T  vertex2);
 
+    @Override
     public Iterator<T> iteratorShortestPath(T vertex1, T  vertex2);
 
+    @Override
     public Iterator<T> iteratorBFS(T  startVertex);
 
 }

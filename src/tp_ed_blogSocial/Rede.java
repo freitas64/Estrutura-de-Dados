@@ -5,6 +5,7 @@
  */
 package tp_ed_blogSocial;
 
+import adt.RedeADT;
 import recursos.*;
 
 import exception.ElementNotFoundException;
