@@ -549,7 +549,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
                 return "Não são amigos, mas pode adicionar!!";
             } else {
                 return "Não pode adicionar!! Se tiver email e username do"+user2.getName()+" e créditos sufucinetes "
-                        + "pode adicionar ";
+                        + "pode adicionar";
             }
 
         }
