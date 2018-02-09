@@ -23,7 +23,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
 
     private double[][] adjMatrix;    // adjacency matrix //mudado
     private User[] vertices;
-    private ArrayList<User> al = new ArrayList<>();
+    private ArrayList<T> al = new ArrayList<>();
 
     /**
      * ****************************************************************
@@ -62,11 +62,11 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @param user
      */
     @Override
-    public void addVertex(User user) {
+    public void addVertex(T user) {
         if (numVertices == vertices.length) {
             expandCapacity();
         }
-        vertices[numVertices] = user;
+        vertices[numVertices] = (User) user;
         for (int i = 0; i <= numVertices; i++) {
             adjMatrix[numVertices][i] = Double.POSITIVE_INFINITY;
             adjMatrix[i][numVertices] = Double.POSITIVE_INFINITY;
@@ -110,7 +110,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @throws exception.EmptyCollectionException
      */
     @Override
-    public void removeVertex(User user) throws EmptyCollectionException {
+    public void removeVertex(T user)  {
         for (int i = 0; i < numVertices; i++) {
             if (user.equals(vertices[i])) {
                 removeVertex(i);
@@ -157,7 +157,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @return ****************************************************************
      */
     @Override
-    public int getIndex(User user) {
+    public int getIndex(T user) {
         for (int i = 0; i < numVertices; i++) {
             if (vertices[i].equals(user)) {
                 return i;
@@ -191,7 +191,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @throws EmptyCollectionException
      */
     @Override
-    public void addEdge(User user1, User user2) throws EmptyCollectionException {
+    public void addEdge(T user1, T user2)  {
         addEdge(getIndex(user1), getIndex(user2));
     }
 
@@ -219,7 +219,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @throws EmptyCollectionException
      */
     @Override
-    public void removeEdge(User user1,User user2) throws EmptyCollectionException {
+    public void removeEdge(T user1,T user2) throws EmptyCollectionException {
         removeEdge(getIndex(user1), getIndex(user2));
     }
 
@@ -272,7 +272,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
 
             for (int j = 0; j < numVertices; j++) {
                 if (adjMatrix[i][0] < Double.POSITIVE_INFINITY && !u.equals(vertices[j]) && isCaminhoTf(u, vertices[j]) && !al.contains(vertices[j])) {
-                    al.add(vertices[j]);
+                    al.add((T) vertices[j]);
                             s += "Id: " + u.getID() + "\n";
                             s += "Nome: " + u.getName() + "\n";
                             s += "Email: " + u.getEmail() + "\n";
@@ -312,7 +312,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
                 for (int j = 0; j < numVertices; j++) {
                     if (adjMatrix[ii][0] < Double.POSITIVE_INFINITY && !vertices[i].equals(vertices[j]) && isCaminhoTf(vertices[i], vertices[j]) && !al.contains(vertices[j])) {
 
-                        al.add(vertices[j]);
+                        al.add((T) vertices[j]);
 
                         s += "\t\tNome: " + getVertices()[j].getName();
                         s += "\t\tUsername: " + getVertices()[j].getUsername();
@@ -336,19 +336,19 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      */
     public void addEdgeById(long id1, long id2) throws EmptyCollectionException {
 
-        User u1 = null;
-        User u2 = null;
+        T u1 = null;
+        T u2 = null;
 
         for (int i = 0; i < numVertices; i++) {
             if (vertices[i].getID()== id1) {
-                u1 = vertices[i];
+                u1 = (T) vertices[i];
             }
 
         }
 
         for (int j = 0; j < numVertices; j++) {
             if (vertices[j].getID() == id2) {
-                u2 = vertices[j];
+                u2 = (T) vertices[j];
 
             }
         }
@@ -367,19 +367,19 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @throws EmptyCollectionException
      */
     public void removeEdgeById(long id1, long id2) throws EmptyCollectionException {
-        User u1 = null;
-        User u2 = null;
+        T u1 = null;
+        T u2 = null;
 
         for (int i = 0; i < numVertices; i++) {
             if (vertices[i].getID() == id1) {
-                u1 = vertices[i];
+                u1 = (T) vertices[i];
             }
 
         }
 
         for (int j = 0; j < numVertices; j++) {
             if (vertices[j].getID() == id2) {
-                u2 = vertices[j];
+                u2 = (T) vertices[j];
 
             }
         }
@@ -401,7 +401,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @return
      */
     @Override
-    public Iterator<T> iteratorBFS(User startUser) {
+    public Iterator<T> iteratorBFS(T startUser) {
         return iteratorBFS(getIndex(startUser));
     }
 
@@ -483,7 +483,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @return
      */
     @Override
-    public Iterator<T> iteratorLongtPath(User user1, User user2) {
+    public Iterator<T> iteratorLongtPath(T user1, T user2) {
         try {
             return iteratorLongtPath(getIndex(user1),
                     getIndex(user2));
@@ -504,7 +504,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @return
      */
     @Override
-    public Iterator<T> iteratorShortestPath(User user1, User user2) {
+    public Iterator<T> iteratorShortestPath(T user1, T user2) {
         try {
             return iteratorShortestPath(getIndex(user1),
                     getIndex(user2));
@@ -522,7 +522,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @return
      */
     public boolean isCaminhoTf(User user1, User user2) {
-        if (adjMatrix[getIndex(user1)][getIndex(user2)] < Double.POSITIVE_INFINITY) {
+        if (adjMatrix[getIndex((T) user1)][getIndex((T) user2)] < Double.POSITIVE_INFINITY) {
             return true;
         } else {
             return false;
@@ -536,7 +536,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @param pessoa2
      * @return
      */
-    public String isCaminho(User user1, User user2) {
+    public String isCaminho(T user1, T user2) {
 
         Iterator<T> it;
 
@@ -548,7 +548,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
             if (it.hasNext()) {
                 return "Não são amigos, mas pode adicionar!!";
             } else {
-                return "Não pode adicionar!! Se tiver email e username do"+user2.getName()+" e créditos sufucinetes "
+                return "Não pode adicionar!! Se tiver email e username do utilizdor e créditos suficientes "
                         + "pode adicionar";
             }
 
@@ -1034,7 +1034,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @return
      * @throws exception.EmptyCollectionException
      */
-    public double longPathWeight(User startVertex, User targetVertex) throws EmptyCollectionException, ElementNotFoundException {
+    public double longPathWeight(T startVertex, T targetVertex) throws EmptyCollectionException, ElementNotFoundException {
         return longPathWeight(getIndex(startVertex),
                 getIndex(targetVertex));
     }

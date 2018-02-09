@@ -59,7 +59,7 @@ public class tp_ed_blogSocial {
         System.out.println(user1.getPosts());
         Iterator<User> it;
        
-        Rede r = new Rede();
+        Rede<User> r = new Rede();
         
         r.addVertex(user1);
         r.addVertex(user4);
