@@ -541,14 +541,15 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
         Iterator<T> it;
 
         if (adjMatrix[getIndex(user1)][getIndex(user2)] < Double.POSITIVE_INFINITY) {
-            return "Amizade direta";
+            return "São amigos diretamente";
         } else {
             it = iteratorShortestPath(user1, user2);
 
             if (it.hasNext()) {
-                return "Amizade Indireta";
+                return "Não são amigos, mas pode adicionar!!";
             } else {
-                return "Não existe Amizade";
+                return "Não pode adicionar!! Se tiver email e username do "+user2.getName()+" e créditos suficientes "
+                        + "pode adicionar usando pedido patrocionado";
             }
 
         }

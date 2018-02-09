@@ -68,14 +68,15 @@ public class tp_ed_blogSocial {
         
         r.addEdge(user1, user2);
         
-         r.addEdge(user3, user1);
+        
         
         r.addEdge(user3, user2);
          
         
         System.out.println("\n---------------------------------------------------------------------------------------------------------------------------------\n");
-      
-        r.imprimeDados(user1);
+      System.out.println(r.isCaminho(user1, user4));
+        System.out.println(r.isCaminhoTf(user1, user2));
+        r.imprimeDados(user2);
 
     
        
