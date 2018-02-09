@@ -8,6 +8,7 @@ package tp_ed_blogSocial;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.Iterator;
 import recursos.*;
 import sun.util.calendar.LocalGregorianCalendar;
 
@@ -64,8 +65,14 @@ public class Post implements Comparable {
         this.comentarios.addElemento(comentario);
     }
     
-    public LinkedList getComments(){
-        return comentarios;
+    public void getComments(){
+        
+        Iterator it = comentarios.iterator();
+        System.out.println("Comentários:");
+        while(it.hasNext()){
+       System.out.println(it.next());
+         
+    }
     }
     
     public void setPost(String post){

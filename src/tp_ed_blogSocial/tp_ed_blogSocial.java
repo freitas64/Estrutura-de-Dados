@@ -55,11 +55,11 @@ public class tp_ed_blogSocial {
         p1.ComentarPost(c1);
         user1.publicarPost(new Post("Mensagem ", "Teste", new GregorianCalendar(2018, 11, 1), publica));
         user1.publicarPost(p2);
-        
+        p1.getComments();
         System.out.println(user1.getPosts());
         Iterator<User> it;
        
-        Rede<User> r = new Rede();
+        RedeSocial r = new RedeSocial();
         
         r.addVertex(user1);
         r.addVertex(user4);
