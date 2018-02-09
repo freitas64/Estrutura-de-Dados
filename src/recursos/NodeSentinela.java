@@ -8,7 +8,7 @@ package recursos;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class NodeSentinela<T> {
  

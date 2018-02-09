@@ -1,6 +1,6 @@
 //*******************************************************************
 //
-// ArrayBinaryTree.java			Authors:  Lewis/Chase
+// ArrayBinaryTree.java			
 //
 // Implements the BinaryTreeADT interface using an array
 //*******************************************************************

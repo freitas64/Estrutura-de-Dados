@@ -10,7 +10,7 @@ import exception.EmptyCollectionException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public interface BinarySearchTreeADT<T> extends BinaryTreeADT<T> {

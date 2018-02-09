@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class ArrayBinarySearchTree<T> extends ArrayBinaryTree<T> implements BinarySearchTreeADT<T> {

@@ -74,7 +74,7 @@ public class tp_ed_blogSocial {
          
         
         System.out.println("\n---------------------------------------------------------------------------------------------------------------------------------\n");
-      System.out.println(r.isCaminho(user1, user4));
+      System.out.println(r.isCaminho(user1, user3));
         System.out.println(r.isCaminhoTf(user1, user2));
         r.imprimeDados(user2);
 

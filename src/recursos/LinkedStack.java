@@ -10,7 +10,7 @@ import exception.*;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class LinkedStack<T> implements StackADT<T> {

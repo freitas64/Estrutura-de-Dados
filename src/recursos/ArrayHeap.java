@@ -11,7 +11,7 @@ import exception.EmptyCollectionException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class ArrayHeap<T> extends ArrayBinaryTree<T> implements HeapADT<T> {

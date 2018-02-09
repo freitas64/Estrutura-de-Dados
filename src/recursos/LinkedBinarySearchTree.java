@@ -1,6 +1,6 @@
 //*******************************************************************
 //
-// LinkedBinarySearchTree.java			Authors: Lewis/Chase
+// LinkedBinarySearchTree.java			
 //
 // Implements the BinarySearchTreeADT interface with links
 //*******************************************************************

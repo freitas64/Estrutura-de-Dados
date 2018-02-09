@@ -10,7 +10,7 @@ import adt.QueueADT;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class LinkedQueue<T> implements QueueADT<T>{
     

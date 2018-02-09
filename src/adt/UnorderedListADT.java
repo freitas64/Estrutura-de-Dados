@@ -11,7 +11,7 @@ import exception.ElementNotFoundException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public interface UnorderedListADT<T> extends ListADT<T>{

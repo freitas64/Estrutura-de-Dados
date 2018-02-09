@@ -9,7 +9,7 @@ import java.util.Iterator;
 import exception.*;
 /**
  *
- * @author Fábio Rêgo
+ * @author ruifreitas
  */
 public class LinkedList<T> implements Iterable<T>{
     

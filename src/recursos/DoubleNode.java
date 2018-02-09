@@ -7,7 +7,7 @@ package recursos;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 class DoubleNode<E> {
 

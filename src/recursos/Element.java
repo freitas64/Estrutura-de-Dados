@@ -7,7 +7,7 @@ package recursos;
 
 /**
  *
- * @author Fábio Rêgo
+ * @author ruifreitas
  */
 public class Element<T> {
     private T valor;

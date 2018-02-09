@@ -9,7 +9,7 @@ import exception.EmptyCollectionException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public interface StackADT<T> {
 

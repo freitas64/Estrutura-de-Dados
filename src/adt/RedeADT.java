@@ -10,8 +10,7 @@ import java.util.Iterator;
 
 
 /**
- * @author Antonio Sanches 8070027
- * @author José Teixeira 8080328
+ * @author ruifreitas
  * @param <T>
  */
 public interface RedeADT<T> extends GraphADT<T> {

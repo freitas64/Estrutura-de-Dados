@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class DoubleLinkedList<T> implements ListADT<T> {
 

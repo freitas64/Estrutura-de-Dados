@@ -6,11 +6,9 @@
 
 package adt;
 
-import adt.ListADT;
-
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public interface OrderedListADT<T> extends ListADT<T>{

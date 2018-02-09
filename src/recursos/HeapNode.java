@@ -9,7 +9,7 @@ package recursos;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class HeapNode<T> extends BinaryTreeNode<T> {

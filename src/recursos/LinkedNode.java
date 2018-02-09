@@ -8,7 +8,7 @@ package recursos;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class LinkedNode<T> {

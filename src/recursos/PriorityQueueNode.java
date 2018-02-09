@@ -7,7 +7,7 @@ package recursos;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class PriorityQueueNode<T> implements Comparable<PriorityQueueNode> {

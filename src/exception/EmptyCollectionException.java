@@ -10,7 +10,7 @@ package exception;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class EmptyCollectionException extends Exception {
     

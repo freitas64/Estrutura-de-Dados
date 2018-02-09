@@ -10,7 +10,7 @@ import exception.EmptyCollectionException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class ArrayStack<T> implements StackADT<T> {
 

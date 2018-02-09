@@ -12,9 +12,8 @@ import java.util.Iterator;
 
 /**
  * 
- * @author RUI MIGUEL RIBEIRO FREITAS
+ * @author ruifreitas
  * @param <T>
- * @Antonio Sanches
  */
 public class ArrayList<T> implements ListADT<T> {
 

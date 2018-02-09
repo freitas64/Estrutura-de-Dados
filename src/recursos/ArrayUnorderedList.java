@@ -13,7 +13,7 @@ import exception.ElementNotFoundException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedListADT<T>

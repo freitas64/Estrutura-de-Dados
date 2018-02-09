@@ -7,7 +7,7 @@ package exception;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class EmptyStackException  extends RuntimeException{
 

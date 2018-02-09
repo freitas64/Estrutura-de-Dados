@@ -11,7 +11,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public interface BinaryTreeADT<T> {

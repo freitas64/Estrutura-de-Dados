@@ -8,7 +8,7 @@ package adt;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public interface QueueADT<T> {

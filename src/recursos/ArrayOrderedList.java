@@ -10,7 +10,7 @@ import adt.OrderedListADT;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class ArrayOrderedList<T> extends ArrayList<T> 

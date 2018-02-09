@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  * @param <T>
  */
 public class LinkedBinaryTree<T> implements BinaryTreeADT<T> 
