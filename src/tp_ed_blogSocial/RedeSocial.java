@@ -193,6 +193,16 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
 
         }
     }
+    
+    public void comentarPost(Comment comentario, User user1, User user2, Post post){
+        if (isCaminhoTf(user1, user2) == true && post.getPrivacy()== Post.Privacy.privada){
+                post.ComentarPost(comentario);
+                System.out.println("Comentou");
+        }else{
+         System.out.println("Não pode comentar");
+        }
+    
+    }
 
 
     

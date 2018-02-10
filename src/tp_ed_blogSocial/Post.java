@@ -6,6 +6,7 @@
 package tp_ed_blogSocial;
 
 import java.text.SimpleDateFormat;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
@@ -19,12 +20,14 @@ import sun.util.calendar.LocalGregorianCalendar;
  */
 public class Post implements Comparable {
     
+   public enum Privacy {
+     publica, privada
+    };
+   
    
     private String post,title;
     private GregorianCalendar date;
-    public enum Privacy {
-     publica, privada
-    };
+    
     private Privacy privacy;
     
     private final LinkedList<Comment> comentarios = new LinkedList<>();

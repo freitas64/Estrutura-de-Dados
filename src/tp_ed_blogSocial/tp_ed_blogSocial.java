@@ -51,10 +51,19 @@ public class tp_ed_blogSocial {
         
         
         
-        Comment c1 = new Comment();
+        Comment c1 = new Comment(new GregorianCalendar(2018, 02, 8), "Primeiro Comentário", user3);
+        Comment c2 = new Comment(new GregorianCalendar(2018, 03, 8), "Segundo Comentário", user2);
+        Comment c3 = new Comment(new GregorianCalendar(2018, 02, 8), "Terceiro Comentário", user1);
+        Comment c4 = new Comment(new GregorianCalendar(2018, 02, 8), "Quarto Comentário", user2);
         p1.ComentarPost(c1);
+        p1.ComentarPost(c2);
+        p1.ComentarPost(c3);
         user1.publicarPost(new Post("Mensagem ", "Teste", new GregorianCalendar(2018, 11, 1), publica));
         user1.publicarPost(p2);
+        user1.publicarPost(p1);
+        
+        
+       
         p1.getComments();
         System.out.println(user1.getPosts());
         Iterator<User> it;
@@ -77,6 +86,10 @@ public class tp_ed_blogSocial {
       System.out.println(r.isCaminho(user1, user3));
         System.out.println(r.isCaminhoTf(user1, user2));
         r.imprimeDados(user2);
+        
+        r.comentarPost(c4, user2, user1, p1);
+        r.comentarPost(c2, user2, user1, p1);
+        p1.getComments();
 
     
        
