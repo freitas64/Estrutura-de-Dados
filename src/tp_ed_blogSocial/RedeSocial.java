@@ -212,7 +212,7 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
         }else{
         }if (isCaminhoTf(user1, user2) == true && post.getPrivacy()== Post.Privacy.publica){
                 post.ComentarPost(comentario);
-                System.out.println("Comentou Mensgem Publica");
+                System.out.println("Comentou Mensagem Publica");
         }else{
             
          System.out.println("Não pode comentar");
@@ -238,4 +238,12 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
         user1.aceitarPedidoRemoverDaLista(target);
         addEdge(user1, target);
     }
+    
+    public void pedidoPatrocionado (User user1, User target, String email, String username){
+        if (isCaminho(user1, target)==2 && email==target.getEmail() && target.getUsername()==username){
+            
+        }
+    }
+    
+   
 }
