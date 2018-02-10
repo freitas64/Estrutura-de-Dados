@@ -41,17 +41,24 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
         Iterator<User> it;
 
         if (adjMatrix[getIndex(user1)][getIndex(user2)] < Double.POSITIVE_INFINITY) {
-            
+            /**
+             * retorna 0 se já são amigos
+             */
             return 0;
             
         } else {
             it = iteratorShortestPath(user1, user2);
 
             if (it.hasNext()) {
-                
+                /**
+                 * Retorna 1 se não são amigos mas pode adicionar o utilizador (user2)
+                 */
                 return 1;
             } else {
                
+                /**
+                 * retorna 2 se não são amigos e não pode fazer pedido , apenas pedido patrocionado
+                 */
                 return 2;
             }
 
@@ -203,6 +210,11 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
                 post.ComentarPost(comentario);
                 System.out.println("Comentou");
         }else{
+        }if (isCaminhoTf(user1, user2) == true && post.getPrivacy()== Post.Privacy.publica){
+                post.ComentarPost(comentario);
+                System.out.println("Comentou Mensgem Publica");
+        }else{
+            
          System.out.println("Não pode comentar");
         }
     
