@@ -28,7 +28,7 @@ public interface RedeSocialADT<T> extends RedeADT<T>{
      * @param user2
      * @return
      */
-    public String isCaminho(User user1, User user2);
+    public int isCaminho(User user1, User user2);
     
     /**
      * Imprime todos as dados(utilizadores), existentes nos vertices.

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class Graph<T> implements GraphADT<T> {
 
     protected final int DEFAULT_CAPACITY = 50;
-    protected int numVertices;   // number of vertices in the graph
+    public int numVertices;   // number of vertices in the graph
     protected boolean[][] adjMatrix;   // adjacency matrix
 
     protected T[] vertices;

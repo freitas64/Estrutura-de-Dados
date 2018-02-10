@@ -6,6 +6,7 @@
 package tp_ed_blogSocial;
 
 import adt.RedeSocialADT;
+import exception.ElementNotFoundException;
 import java.util.Iterator;
 
 /**
@@ -35,20 +36,23 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
      * @return
      */
     @Override
-    public String isCaminho(User user1, User user2) {
-
+    public int isCaminho(User user1, User user2) {
+         
         Iterator<User> it;
 
         if (adjMatrix[getIndex(user1)][getIndex(user2)] < Double.POSITIVE_INFINITY) {
-            return "São amigos diretamente";
+            
+            return 0;
+            
         } else {
             it = iteratorShortestPath(user1, user2);
 
             if (it.hasNext()) {
-                return "Não são amigos, mas pode adicionar!!";
+                
+                return 1;
             } else {
-                return "Não pode adicionar!! Se tiver email e username do utilizdor "+user2.getName()+" e créditos suficientes "
-                        + "pode adicionar";
+               
+                return 2;
             }
 
         }
@@ -203,10 +207,24 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
         }
     
     }
-
-
     
-
-
+    public void adicionarPedidoAmizade (User user1, User target){
+        if(isCaminho(user1, target) == 0){
+            System.out.println("Já são amigos");
+        }else{
+            if (isCaminho(user1, target)==1){
+                target.adicionarPedido(user1);
+                System.out.println("Pedido adicionado com sucesso");
+            }else{
+                System.out.println("Apenas pode efetuar um pedido patrocionado");
+            }
+        }
+    }
     
+   
+    
+    public void aceitarPedido (User user1, User target) throws ElementNotFoundException{
+        user1.pedidosAmizade.remove(target);
+        addEdge(user1, target);
+    }
 }

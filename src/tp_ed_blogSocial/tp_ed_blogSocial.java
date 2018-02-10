@@ -34,15 +34,15 @@ public class tp_ed_blogSocial {
         System.out.println(user2.toString());
         System.out.println("\n");
         System.out.println(user3.toString());
-        user1.FriendshipRequest(user2);
-        user1.FriendshipRequest(user3);
-        user1.FriendshipRequest(user4);
+        user1.adicionarPedido(user2);
+        user1.adicionarPedido(user3);
+        user1.adicionarPedido(user4);
         
         
         System.out.println("\nPedidos de Amizade Sem remove");
         System.out.println(user1.getPedidos());
         
-        user1.removeAmizade(user3);
+        user1.removeDosPedidos(user3);
         System.out.println("\nPedidos de Amizade");
         System.out.println(user1.getPedidos());
               
@@ -90,7 +90,36 @@ public class tp_ed_blogSocial {
         r.comentarPost(c4, user2, user1, p1);
         r.comentarPost(c2, user2, user1, p1);
         p1.getComments();
+        
+        
+        
+         System.out.println("Teste");
+         
+         it = r.iteratorBFS(user1);
+        User p;
+        p = it.next();
 
+        System.out.println("Id:" + p.getID());
+        System.out.println("Nome:" + p.getName());
+        
+        System.out.println("Amigos:");
+
+        while (it.hasNext()) {
+            p = it.next();
+
+            System.out.println("------------------------------------");
+                System.out.println("\tId: " + p.getID());
+                System.out.println("\tNome: " + p.getName());
+                
+                
+
+            
+
+        }
+        
+        r.adicionarPedidoAmizade(user1, user3);
+        
+        System.out.println(user3.getPedidos());
     
        
       

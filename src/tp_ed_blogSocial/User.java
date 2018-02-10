@@ -6,6 +6,7 @@
 package tp_ed_blogSocial;
 
 import exception.ElementNotFoundException;
+import java.util.Iterator;
 import  recursos.*;
 import java.util.concurrent.atomic.AtomicLong;
 
@@ -78,11 +79,11 @@ public class User implements Comparable{
         return "ID: "+id+"\nNome: "+name+"\nUsername: "+username
                 +"\nE-mail: "+email+"\nCréditos: "+credits;
     }
-    public void FriendshipRequest (User request){
+    public void adicionarPedido (User request){
         pedidosAmizade.add(request);
     }
     
-    public void removeAmizade(User user) throws ElementNotFoundException{
+    public void removeDosPedidos(User user) throws ElementNotFoundException{
      pedidosAmizade.remove(user);
     }
     
@@ -90,8 +91,8 @@ public class User implements Comparable{
         return pedidosAmizade;
     }
     
-    public void aceitarPedido (){
-            
+    public void aceitarPedido (User user) throws ElementNotFoundException{
+        pedidosAmizade.remove(user);
     }
     
     public void publicarPost (Post post){
