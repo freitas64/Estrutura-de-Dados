@@ -82,16 +82,12 @@ public class User implements Comparable{
     public void adicionarPedido (User request){
         pedidosAmizade.add(request);
     }
-    
-    public void removeDosPedidos(User user) throws ElementNotFoundException{
-     pedidosAmizade.remove(user);
-    }
-    
+     
     public ArrayOrderedList getPedidos(){
         return pedidosAmizade;
     }
     
-    public void aceitarPedido (User user) throws ElementNotFoundException{
+    public void aceitarPedidoRemoverDaLista (User user) throws ElementNotFoundException{
         pedidosAmizade.remove(user);
     }
     

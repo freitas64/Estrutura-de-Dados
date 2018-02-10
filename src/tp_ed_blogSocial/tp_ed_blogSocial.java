@@ -42,7 +42,7 @@ public class tp_ed_blogSocial {
         System.out.println("\nPedidos de Amizade Sem remove");
         System.out.println(user1.getPedidos());
         
-        user1.removeDosPedidos(user3);
+        user1.aceitarPedidoRemoverDaLista(user3);
         System.out.println("\nPedidos de Amizade");
         System.out.println(user1.getPedidos());
               
@@ -117,9 +117,13 @@ public class tp_ed_blogSocial {
 
         }
         
-        r.adicionarPedidoAmizade(user1, user3);
+        r.verificarPedido(user1, user3);
         
         System.out.println(user3.getPedidos());
+        r.aceitarPedido(user3, user1);
+        r.verificarPedido(user1, user3);
+        
+        
     
        
       

@@ -208,7 +208,7 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     
     }
     
-    public void adicionarPedidoAmizade (User user1, User target){
+    public void verificarPedido (User user1, User target){
         if(isCaminho(user1, target) == 0){
             System.out.println("Já são amigos");
         }else{
@@ -220,11 +220,10 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
             }
         }
     }
-    
-   
+       
     
     public void aceitarPedido (User user1, User target) throws ElementNotFoundException{
-        user1.pedidosAmizade.remove(target);
+        user1.aceitarPedidoRemoverDaLista(target);
         addEdge(user1, target);
     }
 }
