@@ -5,6 +5,7 @@
  */
 package adt;
 
+import tp_ed_blogSocial.RedeSocial;
 import tp_ed_blogSocial.User;
 
 /**
@@ -28,7 +29,7 @@ public interface RedeSocialADT<T> extends RedeADT<T>{
      * @param user2
      * @return
      */
-    public int isCaminho(User user1, User user2);
+    public RedeSocial.Ligacao isCaminho(User user1, User user2);
     
     /**
      * Imprime todos as dados(utilizadores), existentes nos vertices.

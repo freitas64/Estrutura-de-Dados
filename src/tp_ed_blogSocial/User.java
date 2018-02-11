@@ -6,7 +6,7 @@
 package tp_ed_blogSocial;
 
 import exception.ElementNotFoundException;
-import java.util.Iterator;
+
 import  recursos.*;
 import java.util.concurrent.atomic.AtomicLong;
 

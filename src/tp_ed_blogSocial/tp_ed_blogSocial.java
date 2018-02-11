@@ -8,6 +8,10 @@ package tp_ed_blogSocial;
 import exception.ElementNotFoundException;
 import exception.EmptyCollectionException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.Iterator;
 import static tp_ed_blogSocial.Post.Privacy.*;
@@ -48,6 +52,7 @@ public class tp_ed_blogSocial {
               
         Post p1 = new Post("asfsf","sadasd",new GregorianCalendar(2018, 02, 8) , privada);
         Post p2 = new Post("post 2","post2",new GregorianCalendar(2018, 11, 8) , privada);
+        Post p3 = new Post("Mensagem ", "Teste", new GregorianCalendar(2018, 11, 1), publica);
         
         
         
@@ -55,16 +60,14 @@ public class tp_ed_blogSocial {
         Comment c2 = new Comment(new GregorianCalendar(2018, 03, 8), "Segundo Comentário", user2);
         Comment c3 = new Comment(new GregorianCalendar(2018, 02, 8), "Terceiro Comentário", user1);
         Comment c4 = new Comment(new GregorianCalendar(2018, 02, 8), "Quarto Comentário", user2);
-        p1.ComentarPost(c1);
-        p1.ComentarPost(c2);
-        p1.ComentarPost(c3);
-        user1.publicarPost(new Post("Mensagem ", "Teste", new GregorianCalendar(2018, 11, 1), publica));
-        user1.publicarPost(p2);
+        
+        user1.publicarPost(p3);
         user1.publicarPost(p1);
         
         
+        
        
-        p1.getComments();
+        
         System.out.println(user1.getPosts());
         Iterator<User> it;
        
@@ -118,10 +121,20 @@ public class tp_ed_blogSocial {
         }
         
         r.verificarPedido(user1, user3);
-        
+       
+       r.imprimeUtilizadores(r.iteratorShortestPath(user1, user3));
+         System.out.println("Pedidos");
         System.out.println(user3.getPedidos());
         r.aceitarPedido(user3, user1);
         r.verificarPedido(user1, user3);
+        
+        r.alcanceMensagem(user4, p1);
+        
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
+        
+        System.out.println(sdf.format(Calendar.getInstance().getTime()));
+        
+        
         
         
     

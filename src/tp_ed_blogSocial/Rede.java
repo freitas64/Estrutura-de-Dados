@@ -176,8 +176,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      * @param user2
      */
     @Override
-    public void addEdge(int user1, int user2
-    ) {
+    public void addEdge(int user1, int user2) {
         if (indexIsValid(user1) && indexIsValid(user2)) {
             adjMatrix[user1][user2] = 1;
             adjMatrix[user2][user1] = 1;
@@ -302,7 +301,12 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
     public Iterator<T> iteratorBFS(T startUser) {
         return iteratorBFS(getIndex(startUser));
     }
-
+    
+    public Iterator<T> iteratorBFS(T startUser,int maxValue) {
+        return iteratorBFS(getIndex(startUser),maxValue);
+    }
+    
+    
     /**
      * ****************************************************************
      * Returns an iterator that performs a breadth first search traversal
@@ -310,11 +314,17 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
      *
      * @return ****************************************************************
      */
-    @Override
-    public Iterator<T> iteratorBFS(int startIndex) {
 
-        Integer x;
-        LinkedQueue<Integer> traversalQueue = new LinkedQueue<>();
+    @Override
+    public Iterator<T> iteratorBFS(int startIndex){
+         return iteratorBFS(startIndex,Integer.MAX_VALUE);
+    }
+    
+   
+    public Iterator<T> iteratorBFS(int startIndex, int maxLevel) {
+        
+        
+        LinkedQueue<Pair<Integer>> traversalQueue = new LinkedQueue<>();
         ArrayUnorderedList<T> resultList = new ArrayUnorderedList<>();
 
         if (!indexIsValid(startIndex)) {
@@ -325,22 +335,29 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
         for (int i = 0; i < numVertices; i++) {
             visited[i] = false;
         }
-
-        traversalQueue.enqueue(new Integer(startIndex));
+        
+        traversalQueue.enqueue(new Pair(startIndex,0));
         visited[startIndex] = true;
 
         while (!traversalQueue.isEmpty()) {
-            x = traversalQueue.dequeue();
-            resultList.addToRear((T) vertices[x.intValue()]);
+            
+            Pair<Integer> elemento = traversalQueue.dequeue();
+            int x = elemento.getLeft();
+            int level = elemento.getRight();
+             
+            resultList.addToRear((T) vertices[x]);
+            if (level >= maxLevel){
+            continue;
+            }
 
             /**
              * Find all vertices adjacent to x that have not been visited and
              * queue them up
              */
             for (int i = 0; i < numVertices; i++) {
-                if ((adjMatrix[x.intValue()][i] < Double.POSITIVE_INFINITY)
+                if ((adjMatrix[x][i] < Double.POSITIVE_INFINITY)
                         && !visited[i]) {
-                    traversalQueue.enqueue(new Integer(i));
+                    traversalQueue.enqueue(new Pair<>(i,level+1));
                     visited[i] = true;
                 }
             }
@@ -588,7 +605,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
 
         Iterator<Integer> it = iteratorLongPathIndices(startIndex, targetIndex);
         while (it.hasNext()) {
-            templist.addToRear(vertices[(it.next()).intValue()]);
+            templist.addToRear(vertices[(it.next())]);
         }
         return templist.iterator();
 
@@ -740,42 +757,7 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
         return -1;  // should never get to here
     }
 
-    /**
-     * Imprime caminho de amizade de uma determinada cidade.
-     *
-     * @param city
-     * @return
-     */
-//    public String grafRelCity(String city) {
-//        String result = new String("");
-//        double adjMatrixTemp[][] = new double[numVertices][numVertices];
-//        double adjMatrixDefault[][] = new double[numVertices][numVertices];
-//        adjMatrixDefault = adjMatrix;
-//        for (int i = 0; i < numVertices; i++) {
-//            for (int j = 0; j < numVertices; j++) {
-//                if (adjMatrix[i][j] < Double.POSITIVE_INFINITY && vertices[j].getCity().equals(city)) {
-//                    adjMatrixTemp[i][j] = adjMatrix[i][j];
-//                } else {
-//                    adjMatrixTemp[i][j] = Double.POSITIVE_INFINITY;
-//                }
-//
-//            }
-//        }
-//        adjMatrix = adjMatrixTemp;
-//
-//        for (int i = 0; i < numVertices; i++) {
-//            for (int j = numVertices - 1; j > i; j--) {
-//                if (adjMatrix[i][j] < Double.POSITIVE_INFINITY && vertices[i].getCity().equals(city) && vertices[j].getCity().equals(city)) {
-//                    result += vertices[i].getNome() + " --- " + vertices[j].getNome() + "\t\n";
-//                    //result += adjMatrix[i][j] + "\n";
-//                }
-//            }
-//        }
-//
-//        result += "\n";
-//        adjMatrix = adjMatrixDefault;
-//        return result;
-//    }
+   
 
     /**
      * ****************************************************************

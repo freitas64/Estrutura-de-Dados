@@ -14,7 +14,9 @@ import java.util.Iterator;
  * @author ruifreitas
  */
 public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
-    
+     public enum Ligacao {
+     Amigo, AmigoDeAmigo, NãoExisteLigação, Patrocinado
+    };
     /**
      * Return caminho directo
      *
@@ -22,7 +24,7 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
      * @param user2
      * @return
      */
-    
+   
     @Override
     public boolean isCaminhoTf(User user1, User user2) {
         return adjMatrix[getIndex(user1)][getIndex (user2)] < Double.POSITIVE_INFINITY;
@@ -35,34 +37,35 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
      * @param user2
      * @return
      */
-    @Override
-    public int isCaminho(User user1, User user2) {
+     @Override
+    public Ligacao isCaminho(User user1, User user2) {
          
+            int custo = calcularCredito(user1, user2);
+            switch (custo){
+                case 0: return Ligacao.NãoExisteLigação; // não existe ligação
+                case 2: return Ligacao.Amigo; //amigos 
+                case 3: return Ligacao.AmigoDeAmigo; //amigo de amigos
+                default: 
+                    System.out.println(custo);
+                    return Ligacao.Patrocinado;   //pedido patrocinado
+                        
+            
+        }
+                
+               
+    }
+    
+    public int calcularCredito(User user1, User user2){
         Iterator<User> it;
 
-        if (adjMatrix[getIndex(user1)][getIndex(user2)] < Double.POSITIVE_INFINITY) {
-            /**
-             * retorna 0 se já são amigos
-             */
-            return 0;
-            
-        } else {
+        
             it = iteratorShortestPath(user1, user2);
-
-            if (it.hasNext()) {
-                /**
-                 * Retorna 1 se não são amigos mas pode adicionar o utilizador (user2)
-                 */
-                return 1;
-            } else {
-               
-                /**
-                 * retorna 2 se não são amigos e não pode fazer pedido , apenas pedido patrocionado
-                 */
-                return 2;
+            int custo=0;
+            while(it.hasNext()){
+                it.next();
+                custo ++;
             }
-
-        }
+            return custo;
     }
     
     
@@ -206,25 +209,23 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     }
     
     public void comentarPost(Comment comentario, User user1, User user2, Post post){
-        if (isCaminhoTf(user1, user2) == true && post.getPrivacy()== Post.Privacy.privada){
+        if (isCaminho(user1, user2) == Ligacao.Amigo && post.getPrivacy()== Post.Privacy.privada){
                 post.ComentarPost(comentario);
-                System.out.println("Comentou");
+                System.out.println("Comentou a mensagem privada"+post.getTitle()+"("+post.getPrivacy()+")");
+                
         }else{
-        }if (isCaminhoTf(user1, user2) == true && post.getPrivacy()== Post.Privacy.publica){
+        }if (post.getPrivacy()== Post.Privacy.publica){
                 post.ComentarPost(comentario);
-                System.out.println("Comentou Mensagem Publica");
-        }else{
-            
-         System.out.println("Não pode comentar");
+                System.out.println("Comentou Mensagem Publica"+post.getTitle()+"("+post.getPrivacy()+")");
         }
     
     }
     
     public void verificarPedido (User user1, User target){
-        if(isCaminho(user1, target) == 0){
+        if(isCaminho(user1, target) == Ligacao.Amigo){
             System.out.println("Já são amigos");
         }else{
-            if (isCaminho(user1, target)==1){
+            if (isCaminho(user1, target)==Ligacao.AmigoDeAmigo){
                 target.adicionarPedido(user1);
                 System.out.println("Pedido adicionado com sucesso");
             }else{
@@ -240,8 +241,36 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     }
     
     public void pedidoPatrocionado (User user1, User target, String email, String username){
-        if (isCaminho(user1, target)==2 && email==target.getEmail() && target.getUsername()==username){
+        if (isCaminho(user1, target)==Ligacao.AmigoDeAmigo && email==target.getEmail() && target.getUsername()==username){
             
+        }
+    }
+    
+    public void alcanceMensagem(User user, Post post){
+        Iterator<User> it;
+        if(post.getPrivacy() == Post.Privacy.privada){
+            it = iteratorBFS(user, 1);
+            System.out.println("Alcance privado para os utilizadores");
+        }else{
+            System.out.println("Alcance publico para os utilizadores:");
+            it = iteratorBFS(user, 2);
+        }
+         imprimeUtilizadores(it);
+    }
+    
+    public void imprimeUtilizadores(Iterator<User> it){
+       User u;
+        while (it.hasNext()) {
+            u = it.next();
+
+            System.out.println("------------------------------------");
+                System.out.println("\tId: " + u.getID());
+                System.out.println("\tNome: " + u.getName());
+                
+                
+
+            
+
         }
     }
     
