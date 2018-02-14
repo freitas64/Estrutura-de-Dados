@@ -5,6 +5,9 @@
  */
 package recursos;
 
+import exception.EmptyCollectionException;
+import java.util.Iterator;
+
 /**
  *
  * @author ruifreitas
@@ -115,4 +118,5 @@ public class DoublyLinkedList<T> {
         return false;
     }
 
+    
 }

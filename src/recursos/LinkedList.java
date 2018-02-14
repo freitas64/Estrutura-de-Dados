@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package recursos;
 
 import java.util.Iterator;
@@ -14,7 +9,7 @@ import exception.*;
 public class LinkedList<T> implements Iterable<T>{
     
     private Element head;
-
+private int size;
     public Element getHead() {
         return head;
     }
@@ -23,6 +18,7 @@ public class LinkedList<T> implements Iterable<T>{
         this.head = head;
     }
     
+
     public void addElemento(T newElemento) {
         if (head == null) {
             head = new Element(newElemento);
@@ -95,9 +91,12 @@ public class LinkedList<T> implements Iterable<T>{
     
 }
 
+
     @Override
     public String toString() {
         return "LinkedList{" + "head=" + head.getValor() + iterator().next().toString()+'}';
     }
     
 }
+
+    

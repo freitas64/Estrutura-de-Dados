@@ -7,7 +7,9 @@ package tp_ed_blogSocial;
 
 import adt.RedeSocialADT;
 import exception.ElementNotFoundException;
+import exception.EmptyCollectionException;
 import java.util.Iterator;
+import java.util.Scanner;
 
 /**
  *
@@ -17,56 +19,9 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
      public enum Ligacao {
      Amigo, AmigoDeAmigo, NãoExisteLigação, Patrocinado
     };
-    /**
-     * Return caminho directo
-     *
-     * @param user1
-     * @param user2
-     * @return
-     */
-   
-    @Override
-    public boolean isCaminhoTf(User user1, User user2) {
-        return adjMatrix[getIndex(user1)][getIndex (user2)] < Double.POSITIVE_INFINITY;
-    }
+     private long custoPedido;
     
-    /**
-     * Return se existe caminho direto, indireto se nao existe caminho.
-     *
-     * @param user1
-     * @param user2
-     * @return
-     */
-     @Override
-    public Ligacao isCaminho(User user1, User user2) {
-         
-            int custo = calcularCredito(user1, user2);
-            switch (custo){
-                case 0: return Ligacao.NãoExisteLigação; // não existe ligação
-                case 2: return Ligacao.Amigo; //amigos 
-                case 3: return Ligacao.AmigoDeAmigo; //amigo de amigos
-                default: 
-                    System.out.println(custo);
-                    return Ligacao.Patrocinado;   //pedido patrocinado
-                        
-            
-        }
-                
-               
-    }
     
-    public int calcularCredito(User user1, User user2){
-        Iterator<User> it;
-
-        
-            it = iteratorShortestPath(user1, user2);
-            int custo=0;
-            while(it.hasNext()){
-                it.next();
-                custo ++;
-            }
-            return custo;
-    }
     
     
     
@@ -207,6 +162,57 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
 
         }
     }
+    /**
+     * Return caminho directo
+     *
+     * @param user1
+     * @param user2
+     * @return
+     */
+   
+    @Override
+    public boolean isCaminhoTf(User user1, User user2) {
+        return adjMatrix[getIndex(user1)][getIndex (user2)] < Double.POSITIVE_INFINITY;
+    }
+    
+    /**
+     * Return se existe caminho direto, indireto se nao existe caminho.
+     *
+     * @param user1
+     * @param user2
+     * @return
+     */
+     @Override
+    public Ligacao isCaminho(User user1, User user2) {
+        
+            int custo = calcularCredito(user1, user2);
+            switch (custo){
+                case 0: return Ligacao.NãoExisteLigação; // não existe ligação
+                case 2: return Ligacao.Amigo; //amigos 
+                case 3: return Ligacao.AmigoDeAmigo; //amigo de amigos
+                default: 
+                    
+                    return Ligacao.Patrocinado;   //pedido patrocinado
+                        
+            
+        }
+                
+               
+    }
+    
+    public int calcularCredito(User user1, User user2){
+        Iterator<User> it;
+
+        
+            it = iteratorShortestPath(user1, user2);
+            int custo=0;
+            while(it.hasNext()){
+                it.next();
+                custo ++;
+            }
+           return custo;
+           
+    }
     
     public void comentarPost(Comment comentario, User user1, User user2, Post post){
         if (isCaminho(user1, user2) == Ligacao.Amigo && post.getPrivacy()== Post.Privacy.privada){
@@ -221,30 +227,48 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     
     }
     
-    public void verificarPedido (User user1, User target){
-        if(isCaminho(user1, target) == Ligacao.Amigo){
+    public void verificarPedido (User user1, User target) throws EmptyCollectionException, ElementNotFoundException{
+        Scanner scan = new Scanner(System.in);
+        String keyboardOption;
+        if(isCaminho(user1, target).equals(Ligacao.Amigo)){
             System.out.println("Já são amigos");
+            
         }else{
-            if (isCaminho(user1, target)==Ligacao.AmigoDeAmigo){
+            if (isCaminho(user1, target).equals(Ligacao.AmigoDeAmigo)){
                 target.adicionarPedido(user1);
                 System.out.println("Pedido adicionado com sucesso");
-            }else{
+            }else
+            {
+                if (isCaminho(user1, target).equals(Ligacao.Patrocinado)){
                 System.out.println("Apenas pode efetuar um pedido patrocionado");
+                System.out.println ("Deseja fazer pedido patrocinado? Insira S(sim) ou qualquer outra tecla para não");
+                keyboardOption = scan.nextLine();
+                keyboardOption = keyboardOption.toUpperCase();
+                    if(keyboardOption.equals("S")){
+                    pedidoPatrocinado(user1, target);
+                                        
+                    }
+                    
+                    else{
+                    System.exit(0);
+                    
+                    }
+                }
+               
             }
+            
         }
     }
        
     
-    public void aceitarPedido (User user1, User target) throws ElementNotFoundException{
-        user1.aceitarPedidoRemoverDaLista(target);
-        addEdge(user1, target);
+    public void aceitarPedido (User user1, User target) throws ElementNotFoundException, EmptyCollectionException{
+               
+            user1.removerDaListaDePedidos(target);
+            addEdge(target, user1);
+        
+        
     }
     
-    public void pedidoPatrocionado (User user1, User target, String email, String username){
-        if (isCaminho(user1, target)==Ligacao.AmigoDeAmigo && email==target.getEmail() && target.getUsername()==username){
-            
-        }
-    }
     
     public void alcanceMensagem(User user, Post post){
         Iterator<User> it;
@@ -258,19 +282,45 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
          imprimeUtilizadores(it);
     }
     
+    public void pedidoPatrocinado(User user, User target){
+        String emailKeyboard;
+         String usernameKeyboard;
+         Scanner scan = new Scanner(System.in);
+         custoPedido = calcularCredito(user, target);
+        
+        
+         
+        if (isCaminho(user, target).equals(Ligacao.Patrocinado)){
+                System.out.println("Insira email do utilizador a quem deseja fazer o pedido");
+                emailKeyboard = scan.nextLine();
+                System.out.println("Insira o username a quem deseja fazer o pedido");
+                usernameKeyboard = scan.nextLine();
+                if (emailKeyboard.equals(target.getEmail()) && usernameKeyboard.equals(target.getUsername())){
+                    
+                    target.adicionarPedido(user);
+                    user.setCredits(user.getCredits()-custoPedido);
+                    System.out.println("Pedido patrocinado efetuado com sucesso");
+                }else{
+                    System.out.println("E-Mail ou Username inválidos");
+                }
+            
+            
+        }else{
+            System.out.println("Não pode adicionar pedido pois não existe caminho entre ambos");
+        }
+    }
+    
     public void imprimeUtilizadores(Iterator<User> it){
        User u;
         while (it.hasNext()) {
             u = it.next();
 
-            System.out.println("------------------------------------");
-                System.out.println("\tId: " + u.getID());
-                System.out.println("\tNome: " + u.getName());
-                
-                
-
-            
-
+                System.out.println("------------------------------------");
+                System.out.println("\t\u001B[31mId: " +"\u001B[30m"+ u.getID());
+                System.out.println("\t\u001B[31mNome: " +"\u001B[30m"+ u.getName());
+                System.out.println ("\t\u001B[31mUsername:"+"\u001B[30m"+u.getUsername());
+                System.out.println ("\t\u001B[31mE-Mail:"+"\u001B[30m"+u.getEmail());
+                System.out.println ("\t\u001B[31mCréditos:"+"\u001B[30m"+u.getCredits());
         }
     }
     

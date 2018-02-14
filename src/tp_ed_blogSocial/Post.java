@@ -6,12 +6,11 @@
 package tp_ed_blogSocial;
 
 import java.text.SimpleDateFormat;
-import java.util.Collections;
-import java.util.Date;
-import java.util.GregorianCalendar;
+import java.util.Calendar;
+
 import java.util.Iterator;
 import recursos.*;
-import sun.util.calendar.LocalGregorianCalendar;
+
 
 
 /**
@@ -26,14 +25,14 @@ public class Post implements Comparable {
    
    
     private String post,title;
-    private GregorianCalendar date;
+    private Calendar date;
     
     private Privacy privacy;
     
-    private final LinkedList<Comment> comentarios = new LinkedList<>();
+   private final DoubleOrderedList<Comment> comentarios = new DoubleOrderedList<>();
     
     
-    public Post (String post, String title, GregorianCalendar date, Privacy privacy){
+    public Post (String post, String title, Calendar date, Privacy privacy){
            
             this.title = title;
             this.post =post;
@@ -56,7 +55,7 @@ public class Post implements Comparable {
     }
     
     public String getDate(){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy");
+          SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
         return sdf.format(date.getTime());
     }
     
@@ -65,19 +64,34 @@ public class Post implements Comparable {
     }
     
     public void ComentarPost(Comment comentario){
-        this.comentarios.addElemento(comentario);
+        this.comentarios.add(comentario);
     }
-    
+
     public void getComments(){
         
-        Iterator it = comentarios.iterator();
-        System.out.println("Comentários:");
-        while(it.hasNext()){
-       System.out.println(it.next());
-         
+             Iterator it = comentarios.iterator();
+                     
+       System.out.println("\u001B[34mPost:");
+        System.out.println("\tTítulo: "+this.getTitle());
+        System.out.println("\tMensagem: "+this.getPost());
+        System.out.println("\tTítulo: "+this.getDate());
+       System.out.println("\t\u001B[32mComentários("+comentarios.count+"):");
+       
+      
+      while(!it.hasNext()){
+             Comment c;
+                c =  (Comment) it.next();
+                System.out.println("\t\t------------------------------------------");
+                System.out.println("\t\tComentário:" + c.getComment());
+                System.out.println("\t\tData:" + c.getDate());
+                System.out.println("\t\tUtilizador:"+c.getUser().getName());
+                
+       }
+      System.out.println("\t\t------------------------------------------");
     }
+    public void setDate(Calendar date){
+        this.date = date;
     }
-    
     public void setPost(String post){
         this.post = post;
     }

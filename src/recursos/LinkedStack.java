@@ -7,6 +7,7 @@ package recursos;
 
 import adt.StackADT;
 import exception.*;
+import java.util.Iterator;
 
 /**
  *
@@ -17,6 +18,8 @@ public class LinkedStack<T> implements StackADT<T> {
 
     private int count;
     private LinearNode<T> top;
+    private Element item;
+    private Node first;
 
     @Override
     public void push(T element) {

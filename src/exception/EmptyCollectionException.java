@@ -18,5 +18,9 @@ public class EmptyCollectionException extends Exception {
    {
       super ("The " + collection + " is empty.");
    }
+
+    public EmptyCollectionException() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

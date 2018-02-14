@@ -6,18 +6,19 @@
 package tp_ed_blogSocial;
 
 import java.text.SimpleDateFormat;
-import java.util.GregorianCalendar;
+import java.util.Calendar;
+
 
 /**
  *
  * @author ruifreitas
  */
-public class Comment {
-    private GregorianCalendar date;
+public class Comment implements Comparable{
+    private Calendar date;
     private String comment;
     private User user;
 
-    public Comment(GregorianCalendar date, String comment, User user) {
+    public Comment(Calendar date, String comment, User user) {
         this.date = date;
         this.comment = comment;
         this.user = user;
@@ -28,7 +29,7 @@ public class Comment {
     }
 
     public String getDate() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy");
+       SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
         return sdf.format(date.getTime());
     }
 
@@ -40,7 +41,7 @@ public class Comment {
         return user;
     }
 
-    public void setDate(GregorianCalendar date) {
+    public void setDate(Calendar date) {
         this.date = date;
     }
 
@@ -55,6 +56,17 @@ public class Comment {
     @Override
     public String toString() {
         return "################\nData: " + getDate() + "\nComentário: " + comment + "\nUtilizador: " + user.getName();
+    }
+
+   @Override
+    public int compareTo(Object other) {
+        int result;
+        if (comment.equals(((Comment) other).comment)) {
+            result = comment.compareTo(((Comment) other).comment);
+        } else {
+            result = comment.compareTo(((Comment) other).comment);
+        }
+        return result;
     }
     
     

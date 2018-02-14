@@ -41,7 +41,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
    public void addToFront (T element)
    {
       if (size() == list.length) {
-           expandCapacity();
+           ExpandeCapacity();
        }
 
       // shift elements to make room
@@ -60,7 +60,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
    public void addToRear (T element)
    {
       if (size() == list.length) {
-           expandCapacity();
+         ExpandeCapacity();
        }
 
       list[rear] = element;
@@ -74,7 +74,7 @@ public class ArrayUnorderedList<T> extends ArrayList<T> implements UnorderedList
     @Override
     public void addToAfter(T element, T target) throws ElementNotFoundException {
      if (size() == list.length) {
-           expandCapacity();
+           ExpandeCapacity();
        }
 
       int scan = 0;

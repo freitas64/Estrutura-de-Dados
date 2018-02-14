@@ -23,10 +23,9 @@ public class LinearNode<T> {
     /**
      * Creates an empty node.
      */
-    public LinearNode() {
-        next = null;
-        element = null;
-    }
+    
+    
+    
 
     /**
      * !
@@ -34,9 +33,21 @@ public class LinearNode<T> {
      * be stored
      */
     public LinearNode(T elem) {
+        super();
         next = null;
         element = elem;
     }
+    
+    public LinearNode()
+	{
+		super();
+		this.element = null;
+		this.next = null;
+}
+
+    
+
+   
 
     /**
      * * Returns the node that follows this one.

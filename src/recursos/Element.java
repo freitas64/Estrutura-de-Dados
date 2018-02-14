@@ -35,7 +35,9 @@ public class Element<T> {
     }
 
     
-    
+    public int compareTo(T o) {
+        return ((Comparable<T>) this.valor).compareTo(o);
+    }
     
 }
 

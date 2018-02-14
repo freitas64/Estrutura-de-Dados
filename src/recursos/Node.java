@@ -13,7 +13,7 @@ public class Node<T> {
 
     private Node<T> previous;
     private T element;
-    private Node<T> next;
+    Node<T> next;
 
     public Node() {
         this.next = null;

@@ -16,6 +16,8 @@ public class Pair<T> {
         this.left = left;
         this.right = right;
     }
+
+    
     
     public T getLeft() {
         return left;

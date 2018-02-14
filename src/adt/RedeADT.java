@@ -46,5 +46,10 @@ public interface RedeADT<T> extends GraphADT<T> {
 
     @Override
     public Iterator<T> iteratorBFS(T  startVertex);
+    
+    public Iterator<T> iteratorDFS(int startIndex) throws EmptyCollectionException ;
+    
+    @Override
+     public Iterator<T> iteratorDFS(T startVertex);
 
 }

@@ -6,6 +6,7 @@
 package tp_ed_blogSocial;
 
 import exception.ElementNotFoundException;
+import exception.EmptyCollectionException;
 
 import  recursos.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -65,6 +66,10 @@ public class User implements Comparable{
         this.name = name;
     }
     
+    public void setCredits(long credits){
+        this.credits= credits;
+    }
+    
     public void setUsername(String username){
         this.username = username;
     }
@@ -83,12 +88,18 @@ public class User implements Comparable{
         pedidosAmizade.add(request);
     }
      
-    public ArrayOrderedList getPedidos(){
-        return pedidosAmizade;
+    public ArrayOrderedList getPedidos() throws EmptyCollectionException{
+       return pedidosAmizade;
+        
     }
     
-    public void aceitarPedidoRemoverDaLista (User user) throws ElementNotFoundException{
-        pedidosAmizade.remove(user);
+    public void removerDaListaDePedidos (User user) throws ElementNotFoundException,EmptyCollectionException{
+        if (pedidosAmizade.isEmpty()){
+        throw new EmptyCollectionException("Lista de pedidos de amizade");
+        }else{
+            pedidosAmizade.remove(user);
+        }
+        
     }
     
     public void publicarPost (Post post){
