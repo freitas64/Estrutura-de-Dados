@@ -120,7 +120,7 @@ public class User implements Comparable{
         if (name.equals(((User) other).name)) {
             result = name.compareTo(((User) other).name);
         } else {
-            result = username.compareTo(((User) other).username);
+            result = name.compareTo(((User) other).name);
         }
         return result;
     }

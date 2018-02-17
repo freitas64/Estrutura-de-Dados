@@ -98,11 +98,16 @@ public class tp_ed_blogSocial {
         r.comentarPost(c2, user2, user1, p1);
         r.comentarPost(c1, user2, user1, p1);
         r.comentarPost(c4, user2, user1, p1);
-        p1.getComments();
+     
         r.comentarPost(c3, user1, user2, p2);
         p2.getComments();
         
         p2.ComentarPost(c4);
+         System.out.println("Post:");
+       System.out.println("Título: "+p2.getTitle());
+      System.out.println("Mensagem: "+p2.getPost());
+      System.out.println("Título: "+p2.getDate());
+       System.out.println("Comentários("+p2.getComments().count+"):");
          Iterator<Comment> itComment;
                 itComment = p2.getComments().iterator();
                 while(!itComment.hasNext()){

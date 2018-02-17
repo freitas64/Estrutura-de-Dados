@@ -563,14 +563,20 @@ public class MainScreen extends javax.swing.JFrame {
         String[] tokens = idtemp.split("-");
         long id = Long.parseLong(tokens[0]);
         User usertemp = this.netWork.getDataById(id);
-        ArrayList<User> arrayUser = new ArrayList<>();
+        ArrayOrderedList<User> arrayUser = new ArrayOrderedList<>();
 
         for (i = 0; i < this.netWork.size(); i++) {
             User u = this.netWork.getVertices()[i];
             arrayUser.add(u);
 
         }
-        arrayUser.remove(usertemp);
+        try {
+            arrayUser.remove(usertemp);
+        } catch (EmptyCollectionException ex) {
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ElementNotFoundException ex) {
+            Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+        }
         Iterator it = arrayUser.iterator();
         User p;
         while (it.hasNext()) {
@@ -793,14 +799,20 @@ public class MainScreen extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Não existem utilizadores para remover", "Alerta", JOptionPane.WARNING_MESSAGE);
 
         } else {
-            ArrayList<User> arrayUser = new ArrayList<>();
+            ArrayOrderedList<User> arrayUser = new ArrayOrderedList<>();
 
         for (i = 0; i < this.netWork.size(); i++) {
             User u = this.netWork.getVertices()[i];
             arrayUser.add(u);
 
         }
-        arrayUser.remove(user1);
+            try {
+                arrayUser.remove(user1);
+            } catch (EmptyCollectionException ex) {
+                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ElementNotFoundException ex) {
+                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
+            }
         Iterator it = arrayUser.iterator();
         User u;
         while (it.hasNext()) {
