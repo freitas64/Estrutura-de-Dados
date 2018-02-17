@@ -334,7 +334,11 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
             System.out.println("Não pode adicionar pedido pois não existe caminho entre ambos");
         }
     }
-     
+    
+    public User[] getVertices() {
+        return vertices;
+    }
+
     public String imprimeUtilizadores(Iterator<User> it){
        User u;
        String s ="";

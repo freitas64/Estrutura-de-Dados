@@ -432,20 +432,6 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
 
     
 
-    /*
-     *return o número de pessoas registadas de uma determinada cidade.
-     */
-
-//    public int numHabitantesCity(String city) {
-//        int count = 0;
-//        for (int i = 0; i < numVertices; i++) {
-//            if (vertices[i].getCity().equals(city)) {
-//                count++;
-//            }
-//        }
-//
-//        return count;
-//    }
     
     
     /**
@@ -882,33 +868,8 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
         return edge;
     }
 
-    public User[] getVertices() {
-        return vertices;
-    }
+  
 
-    public void setVertices(User[] vertices) {
-        this.vertices = vertices;
-    }
-
-    /**
-     * Check if vertices contains a vertice equal to v.
-     *
-     * @param v
-     * @return true if vertices contains a vertice equal to v
-     */
-    public boolean checkVertice(User v) {
-
-        User u;
-        for (int i = 0; i < vertices.length; i++) {
-            if (vertices[i] != null) {
-                u = vertices[i];
-                if (u.equals(v)) {
-                    return false;
-                }
-            }
-
-        }
-        return true;
-    }
-
+    
+    
 }

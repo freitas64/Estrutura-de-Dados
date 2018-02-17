@@ -52,12 +52,14 @@ public class MainScreen extends javax.swing.JFrame {
     RedeSocial netWork = new RedeSocial();
     Iterator<User> it;
     private MainScreen screen;
-
+    
     /**
      * Creates new form MainScreen
      */
     public MainScreen() {
         initComponents();
+        OpenFriendshipsFileButton.setVisible(false);
+        openFilePostsButton.setVisible(false);
     }
 
     /**
@@ -413,6 +415,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_UsersActionPerformed
 
     private void OpenFriendshipsFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenFriendshipsFileButtonActionPerformed
+        
         JFileChooser fc = new JFileChooser();
         if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
@@ -926,6 +929,7 @@ public class MainScreen extends javax.swing.JFrame {
             public void run() {
                 MainScreen main = new MainScreen();
                 main.setVisible(true);
+                
 
             }
 
@@ -975,6 +979,8 @@ public class MainScreen extends javax.swing.JFrame {
 
                 }
                 count++;
+                OpenFile.setVisible(false);
+                 OpenFriendshipsFileButton.setVisible(true);
             }
 
         } catch (Exception ex) {
@@ -1018,6 +1024,9 @@ public class MainScreen extends javax.swing.JFrame {
 
                 }
                 count++;
+                 OpenFile.setVisible(false);
+                 OpenFriendshipsFileButton.setVisible(false);
+                 openFilePostsButton.setVisible(true);
             }
 
         } catch (Exception ex) {
@@ -1073,6 +1082,9 @@ public class MainScreen extends javax.swing.JFrame {
 
                 }
                 count++;
+                OpenFriendshipsFileButton.setVisible(false);
+                openFilePostsButton.setVisible(false);
+                OpenFile.setVisible(false);
             }
 
         } catch (Exception ex) {
