@@ -8,7 +8,7 @@ package tp_ed_blogSocial;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import java.util.Iterator;
+
 import recursos.*;
 
 
@@ -67,28 +67,28 @@ public class Post implements Comparable {
         this.comentarios.add(comentario);
     }
 
-    public void getComments(){
+    public DoubleOrderedList getComments(){
         
-      Iterator it = comentarios.iterator();
-                     
-       System.out.println("Post:");
-       System.out.println("\tTítulo: "+this.getTitle());
-       System.out.println("\tMensagem: "+this.getPost());
-      System.out.println("\tTítulo: "+this.getDate());
-       System.out.println("\tComentários("+comentarios.count+"):");
-       
-      
-      while(!it.hasNext()){
-             Comment c;
-                c =  (Comment) it.next();
-                System.out.println("\t\t------------------------------------------");
-                System.out.println("\t\tComentário:" + c.getComment());
-                System.out.println("\t\tData:" + c.getDate());
-                System.out.println("\t\tUtilizador:"+c.getUser().getName());
-                
-      }
-      System.out.println("\t\t------------------------------------------");
-       // return comentarios;
+//      Iterator it = comentarios.iterator();
+//                     
+//       System.out.println("Post:");
+//       System.out.println("\tTítulo: "+this.getTitle());
+//       System.out.println("\tMensagem: "+this.getPost());
+//      System.out.println("\tTítulo: "+this.getDate());
+//       System.out.println("\tComentários("+comentarios.count+"):");
+//       
+//      
+//      while(!it.hasNext()){
+//             Comment c;
+//                c =  (Comment) it.next();
+//                System.out.println("\t\t------------------------------------------");
+//                System.out.println("\t\tComentário:" + c.getComment());
+//                System.out.println("\t\tData:" + c.getDate());
+//                System.out.println("\t\tUtilizador:"+c.getUser().getName());
+//                
+//      }
+//      System.out.println("\t\t------------------------------------------");
+        return comentarios;
     }
     public void setDate(Calendar date){
         this.date = date;
