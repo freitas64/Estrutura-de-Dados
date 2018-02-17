@@ -19,7 +19,7 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
      public enum Ligacao {
      Amigo, AmigoDeAmigo, NãoExisteLigação, Patrocinado
     };
-     private long custoPedido;
+     private int custoPedido;
     
     
     
@@ -215,7 +215,7 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     }
     
     public void comentarPost(Comment comentario, User user1, User user2, Post post){
-        if (isCaminho(user1, user2) == Ligacao.Amigo && post.getPrivacy()== Post.Privacy.privada){
+        if (isCaminhoTf(user1, user2) == true && post.getPrivacy()== Post.Privacy.privada){
                 post.ComentarPost(comentario);
                 System.out.println("Comentou a mensagem privada"+post.getTitle()+"("+post.getPrivacy()+")");
                 
@@ -227,7 +227,7 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     
     }
     
-    public void verificarPedido (User user1, User target) throws EmptyCollectionException, ElementNotFoundException{
+    public void verificarPedido (User user1, User target) {
         Scanner scan = new Scanner(System.in);
         String keyboardOption;
         if(isCaminho(user1, target).equals(Ligacao.Amigo)){
@@ -250,16 +250,42 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
                     }
                     
                     else{
-                    System.exit(0);
                     
+                   
+                   
                     }
+                }else{
+                     System.out.println("Não pode efetuar pedido");
                 }
                
             }
             
         }
     }
-       
+    
+     public Ligacao verificarPedidoGrafica (User user1, User target) {
+        Ligacao tipo ;
+        if(isCaminho(user1, target).equals(Ligacao.Amigo)){
+            tipo = Ligacao.Amigo;
+            
+        }else{
+            if (isCaminho(user1, target).equals(Ligacao.AmigoDeAmigo)){
+                target.adicionarPedido(user1);
+                tipo = Ligacao.AmigoDeAmigo;
+            }else
+            {
+                if (isCaminho(user1, target).equals(Ligacao.Patrocinado)){
+                    tipo = Ligacao.Patrocinado;
+                
+                }else{
+                    tipo = Ligacao.NãoExisteLigação;
+                }
+               
+            }
+            
+        }
+        return tipo;
+    }  
     
     public void aceitarPedido (User user1, User target) throws ElementNotFoundException, EmptyCollectionException{
                
@@ -270,16 +296,17 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
     }
     
     
-    public void alcanceMensagem(User user, Post post){
+    public String alcanceMensagem(User user, Post post){
         Iterator<User> it;
         if(post.getPrivacy() == Post.Privacy.privada){
             it = iteratorBFS(user, 1);
-            System.out.println("Alcance privado para os utilizadores");
+           
         }else{
-            System.out.println("Alcance publico para os utilizadores:");
-            it = iteratorBFS(user, 2);
+           
+            it = iteratorBFS(user, 4);
         }
-         imprimeUtilizadores(it);
+        
+         return imprimeUtilizadores(it);
     }
     
     public void pedidoPatrocinado(User user, User target){
@@ -288,8 +315,6 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
          Scanner scan = new Scanner(System.in);
          custoPedido = calcularCredito(user, target);
         
-        
-         
         if (isCaminho(user, target).equals(Ligacao.Patrocinado)){
                 System.out.println("Insira email do utilizador a quem deseja fazer o pedido");
                 emailKeyboard = scan.nextLine();
@@ -309,19 +334,16 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
             System.out.println("Não pode adicionar pedido pois não existe caminho entre ambos");
         }
     }
-    
-    public void imprimeUtilizadores(Iterator<User> it){
+     
+    public String imprimeUtilizadores(Iterator<User> it){
        User u;
+       String s ="";
         while (it.hasNext()) {
             u = it.next();
-
-                System.out.println("------------------------------------");
-                System.out.println("\t\u001B[31mId: " +"\u001B[30m"+ u.getID());
-                System.out.println("\t\u001B[31mNome: " +"\u001B[30m"+ u.getName());
-                System.out.println ("\t\u001B[31mUsername:"+"\u001B[30m"+u.getUsername());
-                System.out.println ("\t\u001B[31mE-Mail:"+"\u001B[30m"+u.getEmail());
-                System.out.println ("\t\u001B[31mCréditos:"+"\u001B[30m"+u.getCredits());
+            s+=              
+                u.getID()+"-"+u.getName()+"\n";
         }
+        return s;
     }
     
    

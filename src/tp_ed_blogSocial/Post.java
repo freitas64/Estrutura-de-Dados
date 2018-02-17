@@ -55,7 +55,7 @@ public class Post implements Comparable {
     }
     
     public String getDate(){
-          SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm:ss");
         return sdf.format(date.getTime());
     }
     
@@ -69,13 +69,13 @@ public class Post implements Comparable {
 
     public void getComments(){
         
-             Iterator it = comentarios.iterator();
+      Iterator it = comentarios.iterator();
                      
-       System.out.println("\u001B[34mPost:");
-        System.out.println("\tTítulo: "+this.getTitle());
-        System.out.println("\tMensagem: "+this.getPost());
-        System.out.println("\tTítulo: "+this.getDate());
-       System.out.println("\t\u001B[32mComentários("+comentarios.count+"):");
+       System.out.println("Post:");
+       System.out.println("\tTítulo: "+this.getTitle());
+       System.out.println("\tMensagem: "+this.getPost());
+      System.out.println("\tTítulo: "+this.getDate());
+       System.out.println("\tComentários("+comentarios.count+"):");
        
       
       while(!it.hasNext()){
@@ -86,8 +86,9 @@ public class Post implements Comparable {
                 System.out.println("\t\tData:" + c.getDate());
                 System.out.println("\t\tUtilizador:"+c.getUser().getName());
                 
-       }
+      }
       System.out.println("\t\t------------------------------------------");
+       // return comentarios;
     }
     public void setDate(Calendar date){
         this.date = date;
@@ -107,12 +108,9 @@ public class Post implements Comparable {
     @Override
     public int compareTo(Object other) {
         int result;
-        if (title.equals(((Post) other).title)) {
-            result = title.compareTo(((Post) other).title);
-        } else {
-            result = post.compareTo(((Post) other).post);
-        }
+        result = date.compareTo(((Post) other).date);
         return result;
+        
     }
     
     @Override

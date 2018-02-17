@@ -67,7 +67,8 @@ public class tp_ed_blogSocial {
         
         
        
-        
+        System.out.println("\nPosts:");
+
         System.out.println(user1.getPosts());
         Iterator<User> it;
        
@@ -98,6 +99,11 @@ public class tp_ed_blogSocial {
         r.comentarPost(c1, user2, user1, p1);
         r.comentarPost(c4, user2, user1, p1);
         p1.getComments();
+        r.comentarPost(c3, user1, user2, p2);
+        p2.getComments();
+        
+        p2.ComentarPost(c4);
+        p2.getComments();
         
         
         
@@ -142,20 +148,20 @@ public class tp_ed_blogSocial {
         
         
         
-        r.verificarPedido(user1, user5);
-        System.out.println(user1.getCredits());
-        System.out.println("Pedidos do user "+user5.getName());
-        System.out.println(user5.getPedidos());
-        System.out.println(user5.getName()+"\tNcreditos:"+user5.getCredits());
-        
-        r.aceitarPedido(user5, user1);
-        System.out.println(user1.getCredits());
-        System.out.println("Ver pedido depois de aceite");
-        System.out.println(user5.getName()+"\tNPedidos:"+user5.getPedidos());
-        System.out.println(user5.getName()+"\tNcreditos:"+user5.getCredits());
-        r.verificarPedido(user1, user5);
-        
-        
+//        //r.verificarPedido(user1, user5);
+//        System.out.println(user1.getCredits());
+//        System.out.println("Pedidos do user "+user5.getName());
+//        System.out.println(user5.getPedidos());
+//        System.out.println(user5.getName()+"\tNcreditos:"+user5.getCredits());
+//        
+//        r.aceitarPedido(user5, user1);
+//        System.out.println(user1.getCredits());
+//        System.out.println("Ver pedido depois de aceite");
+//        System.out.println(user5.getName()+"\tNPedidos:"+user5.getPedidos());
+//        System.out.println(user5.getName()+"\tNcreditos:"+user5.getCredits());
+//        //r.verificarPedido(user1, user5);
+//        
+        System.out.println(r.toString());
     
        
       

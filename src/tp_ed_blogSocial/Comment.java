@@ -29,7 +29,7 @@ public class Comment implements Comparable{
     }
 
     public String getDate() {
-       SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
+       SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm:ss");
         return sdf.format(date.getTime());
     }
 
@@ -61,10 +61,10 @@ public class Comment implements Comparable{
    @Override
     public int compareTo(Object other) {
         int result;
-        if (comment.equals(((Comment) other).comment)) {
-            result = comment.compareTo(((Comment) other).comment);
+        if (date.equals(((Comment) other).date)) {
+            result = date.compareTo(((Comment) other).date);
         } else {
-            result = comment.compareTo(((Comment) other).comment);
+            result = date.compareTo(((Comment) other).date);
         }
         return result;
     }

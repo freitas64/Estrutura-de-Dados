@@ -782,9 +782,9 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
 
         for (int i = 0; i < numVertices; i++) {
             result += "" + vertices[i].getName();
-            if (i < 10) {
-                result += " ";
-            }
+            
+                result += "\t";
+            
         }
         result += "\n\n";
 
@@ -793,9 +793,9 @@ public class Rede<T> extends Graph<T> implements RedeADT<T> {
 
             for (int j = 0; j < numVertices; j++) {
                 if (adjMatrix[i][j] < Double.POSITIVE_INFINITY) {
-                    result += "1     ";
+                    result += "1\t";
                 } else {
-                    result += "0     ";
+                    result += "0\t";
                 }
             }
             result += "\n";

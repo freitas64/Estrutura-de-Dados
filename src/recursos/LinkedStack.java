@@ -8,6 +8,7 @@ package recursos;
 import adt.StackADT;
 import exception.*;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
  *
@@ -74,4 +75,36 @@ public class LinkedStack<T> implements StackADT<T> {
 
         return result;
     }
+    public Iterator<T> iterator() {
+        return new LinkedStackIterator();
+}
+    private class LinkedStackIterator implements Iterator<T> {
+
+        private LinearNode<T> current = top;
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public T next() {
+            T data = current.getElement();
+            current = current.getNext();
+            return data;
+        }
+
+        @Override
+        public void remove() {
+            //To change body of implemented methods use File | Settings | File Templates.
+        }
+        
+        public T peek() {
+		if (count == 0) {
+			throw new EmptyStackException();
+		}
+		return (T) first.getElement();
+	}
+    }
+
+
 }

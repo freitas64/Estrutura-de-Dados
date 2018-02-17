@@ -9,7 +9,7 @@ package recursos;
  *
  * @author ruifreitas
  */
-public class Node<T> {
+public class Node<T>{
 
     private Node<T> previous;
     private T element;
@@ -68,4 +68,5 @@ public class Node<T> {
     public void setPrevious(Node<T> previous) {
         this.previous = previous;
     }
+    
 }

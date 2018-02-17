@@ -19,7 +19,7 @@ public class User implements Comparable{
     private static final AtomicLong NEXT_ID = new AtomicLong(1);
     private final long id = NEXT_ID.getAndIncrement();
     private String name,email, username;
-    private long credits;
+    private int credits;
     ArrayOrderedList<User> pedidosAmizade = new ArrayOrderedList(100);
     LinkedStack<Post> posts = new LinkedStack<>();
     
@@ -58,7 +58,7 @@ public class User implements Comparable{
         return email;
     }
     
-    public long getCredits(){
+    public int getCredits(){
         return credits;
     }
     
@@ -66,7 +66,7 @@ public class User implements Comparable{
         this.name = name;
     }
     
-    public void setCredits(long credits){
+    public void setCredits(int credits){
         this.credits= credits;
     }
     
@@ -88,7 +88,7 @@ public class User implements Comparable{
         pedidosAmizade.add(request);
     }
      
-    public ArrayOrderedList getPedidos() throws EmptyCollectionException{
+    public ArrayOrderedList getPedidos() {
        return pedidosAmizade;
         
     }
