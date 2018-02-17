@@ -1,0 +1,24 @@
+//Post-titulo-privacidade-userID
+Post 1 de teste;post 1;0;1
+Post 2 de teste;post 2;1;1
+Post 3 de teste;post 3;0;2
+Post 4 de teste;post 4;1;2
+Post 5 de teste;post 5;0;3
+Post 6 de teste;post 6;1;3
+Post 7 de teste;post 7;0;4
+Post 8 de teste;post 8;1;4
+Post 9 de teste;post 9;0;5
+Post 10 de teste;post 10;1;5
+Post 11 de teste;post 11;0;6
+Post 12 de teste;post 12;1;6
+Post 13 de teste;post 13;0;7
+Post 14 de teste;post 14;1;7
+Post 15 de teste;post 15;0;8
+Post 16 de teste;post 16;1;8
+Post 17 de teste;post 17;0;9
+Post 18 de teste;post 18;1;9
+Post 19 de teste;post 19;0;10
+Post 20 de teste;post 20;1;10
+
+
+

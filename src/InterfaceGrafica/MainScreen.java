@@ -34,6 +34,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
+import javax.swing.ListModel;
 import recursos.ArrayOrderedList;
 import recursos.DoubleOrderedList;
 import recursos.LinkedStack;
@@ -79,10 +80,8 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         RegisterUserButton = new javax.swing.JButton();
         DeleteUserButton = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         FriendShipRequestButton = new javax.swing.JButton();
@@ -94,7 +93,8 @@ public class MainScreen extends javax.swing.JFrame {
         textArea = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         showFriendRequestButton = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        openFilePostsButton = new javax.swing.JButton();
+        showFriends = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -157,19 +157,28 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Ver Relações");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(RegisterUserButton)
                     .addComponent(DeleteUserButton))
                 .addGap(0, 4, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3)
+                    .addComponent(jButton2))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -180,22 +189,12 @@ public class MainScreen extends javax.swing.JFrame {
                 .addComponent(RegisterUserButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DeleteUserButton)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton2)
+                .addContainerGap(11, Short.MAX_VALUE))
         );
 
         jLabel5.setText("-------------------------------------------------------------------------------");
-
-        jLabel6.setForeground(new java.awt.Color(0, 0, 255));
-        jLabel6.setText("Opções Gerais");
-
-        jButton2.setText("Ver Relações");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("-------------------------------------------------------------------------------");
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
         jLabel7.setText("Opções de utilizador");
@@ -263,36 +262,33 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Abrir ficheiro de publicações");
+        openFilePostsButton.setText("Abrir ficheiro de publicações");
+        openFilePostsButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                openFilePostsButtonActionPerformed(evt);
+            }
+        });
+
+        showFriends.setText("Ver amigos");
+        showFriends.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showFriendsActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(OpenFile)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(OpenFriendshipsFileButton)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton1))
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel6)
-                                            .addComponent(jButton2)
-                                            .addComponent(jLabel7))
+                                        .addComponent(jLabel7)
                                         .addGap(559, 559, 559))
                                     .addGroup(layout.createSequentialGroup()
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -309,13 +305,31 @@ public class MainScreen extends javax.swing.JFrame {
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(PublishButton)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(showUserSelectedPosts)))
+                                                .addComponent(showUserSelectedPosts))
+                                            .addComponent(showFriends))
                                         .addGap(43, 43, 43)))
-                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(OpenFile)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(OpenFriendshipsFileButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(openFilePostsButton)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(100, 100, 100)))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -328,22 +342,9 @@ public class MainScreen extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(OpenFile)
                             .addComponent(OpenFriendshipsFileButton)
-                            .addComponent(jButton1))
+                            .addComponent(openFilePostsButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 56, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(776, 776, 776))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -360,8 +361,17 @@ public class MainScreen extends javax.swing.JFrame {
                                 .addGap(1, 1, 1)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(showFriendPost)
-                                    .addComponent(showFriendRequestButton))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(showFriendRequestButton)))))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 36, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(770, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(showFriends)
+                        .addGap(23, 23, 23)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
@@ -629,14 +639,17 @@ public class MainScreen extends javax.swing.JFrame {
         Privacy privacy;
         String idtemp = (String) Users.getSelectedItem();
         String[] tokens = idtemp.split("-");
+        String texto ="Escolha a privacidade da mensagem. Insira 1(privada) ou 2(publica)";
         long id = Long.parseLong(tokens[0]);
         User user = this.netWork.getDataById(id);
         String titulo = JOptionPane.showInputDialog("Insira o título da publicação");
         String corpoPublicação = JOptionPane.showInputDialog("Insira o corpo da publicação");
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
         date = Calendar.getInstance();
-        String privacidade = JOptionPane.showInputDialog("Escolha a privacidade da mensagem. Insira 1(privada) ou 2(publica)");
-        if ("1".equals(privacidade)) {
+        String privacidade = JOptionPane.showInputDialog(texto);
+        int opcao = Integer.parseInt(privacidade);
+        
+        if (opcao == 1) {
             privacy = Privacy.privada;
             Post post = new Post(corpoPublicação, titulo, date, privacy);
             user.publicarPost(post);            
@@ -647,14 +660,21 @@ public class MainScreen extends javax.swing.JFrame {
             textArea.append(this.netWork.alcanceMensagem(user, post));
 
         } else {
+            if (opcao == 2) {
             privacy = Privacy.publica;
             Post post = new Post(corpoPublicação, titulo, date, privacy);
-            user.publicarPost(post);
+            user.publicarPost(post);            
             this.netWork.alcanceMensagem(user, post);
             JOptionPane.showMessageDialog(this, "Publicado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             textArea.setText("");
-            textArea.append("Alcance publico para os utilizadores\n");
+            textArea.append("Alcance privado para os utilizadores\n");
             textArea.append(this.netWork.alcanceMensagem(user, post));
+
+        } else{
+                JOptionPane.showMessageDialog(this, "Opção Inválida", "Erro", JOptionPane.WARNING_MESSAGE);
+            
+            }
+            
         }
     }//GEN-LAST:event_PublishButtonActionPerformed
 
@@ -718,19 +738,19 @@ public class MainScreen extends javax.swing.JFrame {
             
             Iterator<Post> itPosts;
             itPosts = user.getPosts().iterator();
-            
+            Post p ;
             textArea.setText("");
             textArea.append("Publicações de "+user.getName()+"\n---------------------------------------------\n");
             
             while (itPosts.hasNext()) {
               
-               Post p  = (Post) itPosts.next();
+               p  =  itPosts.next();
                 
-                  textArea.append( "Título: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\n");
+                  textArea.append( "\nTítulo: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\nPrivacidade: "+p.getPrivacy()+"\n");
                   textArea.append( "Comentários:");
                 
-                p.ComentarPost(new Comment(date, "cena", new User("Paneleiro", "paneeiro@email.com", "gay", 10)));
-                p.ComentarPost(new Comment(new GregorianCalendar(2018, 1, 17, 00, 13), "xispe", new User("lesbica", "lesbica@email.com", "fessting", 10)));
+                p.ComentarPost(new Comment(date, "Comentario 1", new User("Hugo", "hugo@email.com", "hugoreis", 10)));
+                p.ComentarPost(new Comment(date, "Comentario 2", new User("Sofia", "sofia@mail.com", "sofiasousa", 10)));
                 
                 Iterator<Comment> itComment;
                 itComment = p.getComments().iterator();
@@ -760,8 +780,100 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_showUserSelectedPostsActionPerformed
 
     private void showFriendPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFriendPostActionPerformed
-                
+        int i;
+        String idtemp = (String) Users.getSelectedItem();
+        String[] tokens = idtemp.split("-");
+        long id1 = Long.parseLong(tokens[0]);
+        User user1 = this.netWork.getDataById(id1);
+        boolean ligacao;
+       
+        String s = "Introduza o ID da Pessoa\n";
+       
+        if (this.netWork.size() == 0) {
+            JOptionPane.showMessageDialog(this, "Não existem utilizadores para remover", "Alerta", JOptionPane.WARNING_MESSAGE);
+
+        } else {
+            ArrayList<User> arrayUser = new ArrayList<>();
+
+        for (i = 0; i < this.netWork.size(); i++) {
+            User u = this.netWork.getVertices()[i];
+            arrayUser.add(u);
+
+        }
+        arrayUser.remove(user1);
+        Iterator it = arrayUser.iterator();
+        User u;
+        while (it.hasNext()) {
+            u = (User) it.next();
+            s += "" + u.getID() + "-" + u.getName();
+            s += "\n";
+
+        }
+
+            String nome = JOptionPane.showInputDialog(s);
+
+            long id2 = Long.parseLong(nome);
+            User user2 = this.netWork.getDataById(id2);
+            ligacao = this.netWork.isCaminhoTf(user1, user2);
+            if(ligacao == true){
+                Iterator<Post> itPosts;
+                itPosts = user2.getPosts().iterator();
+               
+            textArea.setText("");
+            textArea.append("Publicções de "+user2.getName());
+            while (itPosts.hasNext()) {
+              Post p = itPosts.next();
+              
+               textArea.append( "\nTítulo: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\nPrivacidade: "+p.getPrivacy()+"\n");
+             
+            }
+            }else{
+                Iterator<Post> itPosts;
+                itPosts = user2.getPosts().iterator();
+               
+                textArea.setText("");
+                textArea.append("Publicções de "+user2.getName());
+            while (itPosts.hasNext()) {
+              Post p = itPosts.next();
+                if(p.getPrivacy() == Privacy.publica){
+                    textArea.append( "\nTítulo: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\nPrivacidade: "+p.getPrivacy()+"\n");
+                } 
+            }
+            
+            
+        }
+        }
     }//GEN-LAST:event_showFriendPostActionPerformed
+
+    private void openFilePostsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFilePostsButtonActionPerformed
+       JFileChooser fc = new JFileChooser();
+        if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            File file = fc.getSelectedFile();
+            boolean occurredErrors = false;
+            try {
+                occurredErrors = readPostsFileAsString(file.getPath());
+
+            } catch (Exception ex) {
+                System.out.println(ex);
+                JOptionPane.showMessageDialog(this, "File can´t be loaded");
+            }
+            
+
+            if (occurredErrors) {
+                JOptionPane.showMessageDialog(this, "File loaded but one or "
+                        + "more errors occurred");
+            }
+
+        }
+    }//GEN-LAST:event_openFilePostsButtonActionPerformed
+
+    private void showFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFriendsActionPerformed
+        String idtemp = (String)Users.getSelectedItem();
+        String[] tokens = idtemp.split("-");
+        long id1 = Long.parseLong(tokens[0]);
+        User user1 = this.netWork.getDataById(id1);
+        this.netWork.imprimeDados(user1);
+    }//GEN-LAST:event_showFriendsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -905,6 +1017,61 @@ public class MainScreen extends javax.swing.JFrame {
 
         return error;
     }
+    
+     public boolean readPostsFileAsString(String filePath) throws Exception {
+        if (filePath == null || filePath.trim().equals("")) {
+            throw new Exception("Invalid file path.");
+        }
+
+        boolean result;
+
+        BufferedReader br = null;
+        boolean error = false;
+        try {
+            br = new BufferedReader(new FileReader(filePath));
+            String currentLine;
+            String corpoPost;
+            String tituloPost;
+            Calendar date;
+            Privacy privacidadePost;
+            User user;
+            Post post;
+
+            int count = 1;
+            while ((currentLine = br.readLine()) != null) {
+                String[] tokens = currentLine.split(";");
+                boolean correctVertex = false;
+                boolean correctEdge = false;
+
+                if (tokens.length == 4) {
+                    corpoPost = tokens[0];
+                    tituloPost = tokens[1];
+                    int privacidadeFile=Integer.parseInt(tokens[2]);
+                    date = Calendar.getInstance();
+                    if (privacidadeFile == 0){
+                        privacidadePost= Privacy.privada;
+                    }else{
+                        privacidadePost = Privacy.publica;
+                    }
+                    long userID = Long.parseLong(tokens[3]);
+                    user = netWork.getDataById(userID);
+                    
+                    post = new Post(corpoPost, tituloPost, date, privacidadePost);
+                    user.publicarPost(post);
+
+                }
+                count++;
+            }
+
+        } catch (Exception ex) {
+            System.out.println(ex);
+
+        } finally {
+            br.close();
+        }
+
+        return error;
+    }
 
     /**
      * Remove all vertices of the source and destination combo box and load the
@@ -947,14 +1114,11 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton PublishButton;
     private javax.swing.JButton RegisterUserButton;
     private javax.swing.JComboBox Users;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -963,8 +1127,10 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JButton openFilePostsButton;
     private javax.swing.JButton showFriendPost;
     private javax.swing.JButton showFriendRequestButton;
+    private javax.swing.JButton showFriends;
     private javax.swing.JButton showUserSelectedPosts;
     private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
