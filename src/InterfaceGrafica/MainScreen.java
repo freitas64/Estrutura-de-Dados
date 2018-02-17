@@ -9,8 +9,8 @@ import exception.ElementNotFoundException;
 import tp_ed_blogSocial.*;
 
 import exception.EmptyCollectionException;
-import exception.EmptyFieldsException;
-import java.awt.TextField;
+
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -400,7 +400,7 @@ public class MainScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "File can´t be loaded");
             }
             loadLinks();
-            loadUsers();
+            
 
             if (occurredErrors) {
                 JOptionPane.showMessageDialog(this, "File loaded but one or "
@@ -428,7 +428,7 @@ public class MainScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "File can´t be loaded");
             }
             loadLinks();
-            loadUsers();
+            
 
             if (occurredErrors) {
                 JOptionPane.showMessageDialog(this, "File loaded but one or "
@@ -466,7 +466,7 @@ public class MainScreen extends javax.swing.JFrame {
                         System.err.println("IOException: " + ioe.getMessage());
                     }
                     this.loadLinks();
-                    this.loadUsers();
+                    
 
                 } else {
                     new MainScreen();
@@ -549,7 +549,7 @@ public class MainScreen extends javax.swing.JFrame {
             }
             boolean successful = tempFile.renameTo(inputFile);
 
-            this.loadUsers();
+           
             this.loadLinks();
         }
 
@@ -611,7 +611,7 @@ public class MainScreen extends javax.swing.JFrame {
 
                 } else {
                     if (tipo == Ligacao.Patrocinado) {
-                        custoPedido = this.netWork.calcularCredito(user1, target) - 1;
+                        custoPedido = this.netWork.calcularCredito(user1, target);
                         respostaPatrocinado = JOptionPane.showConfirmDialog(this, "Apenas pode fazer pedido patrocinado!! \n"
                                 + "Deseja fazer pedido patrocinado?(Custo: " + custoPedido + " créditos)",
                                 "Amizade", JOptionPane.YES_NO_OPTION);
@@ -622,8 +622,7 @@ public class MainScreen extends javax.swing.JFrame {
                             String emailInput = JOptionPane.showInputDialog("Inserir email do utilizador");
                             String usernameInput = JOptionPane.showInputDialog("Inserir username do utilizador");
                             if (emailInput.equals(target.getEmail()) && usernameInput.equals(target.getUsername())) {
-                                target.adicionarPedido(user1);
-                                user1.setCredits(user1.getCredits() - custoPedido);
+                                this.netWork.pedidoPatrocinado(user1, target);
                                 JOptionPane.showMessageDialog(this, "Pedido de amizade efetuado com sucesso\n"
                                         + "Foram-lhe retirados " + custoPedido + " créditos");
 
@@ -700,11 +699,7 @@ public class MainScreen extends javax.swing.JFrame {
 
             String s = "Introduza o ID da Pessoa que deseja aceitar pedido\n";
 
-            try {
-                arrayUser.remove(user);
-            } catch (EmptyCollectionException | ElementNotFoundException ex) {
-                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
             Iterator it = arrayUser.iterator();
             User p;
             while (it.hasNext()) {
@@ -743,41 +738,11 @@ public class MainScreen extends javax.swing.JFrame {
         if (user.getPosts().isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Não tem nenhuma publicação", "INFO", JOptionPane.INFORMATION_MESSAGE);
         } else {
-            String s = "";
-            
-            Iterator<Post> itPosts;
-            itPosts = user.getPosts().iterator();
-            Post p ;
-            textArea.setText("");
+            textArea.setText("");     
             textArea.append("Publicações de "+user.getName()+"\n---------------------------------------------\n");
             
-            while (itPosts.hasNext()) {
-              
-               p  =  itPosts.next();
-                
-                  textArea.append( "\nTítulo: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\nPrivacidade: "+p.getPrivacy()+"\n");
-                  textArea.append( "Comentários:");
-                
-                p.ComentarPost(new Comment(date, "Comentario 1", new User("Hugo", "hugo@email.com", "hugoreis", 10)));
-                p.ComentarPost(new Comment(date, "Comentario 2", new User("Sofia", "sofia@mail.com", "sofiasousa", 10)));
-                
-                Iterator<Comment> itComment;
-                itComment = p.getComments().iterator();
-                while(!itComment.hasNext()){
-                Comment c;
-                c =  (Comment) itComment.next();
-                
-                textArea.append("\n\tComentário:" + c.getComment());
-                textArea.append("\n\tData:" + c.getDate());
-                textArea.append("\n\tUtilizador:"+c.getUser().getName());
-                textArea.append("\n\t------------------------------------------");
-               
-      }
-               
-                 
-                
-            }
             
+            textArea.append(user.getPostsToString());
             
             
               
@@ -831,17 +796,11 @@ public class MainScreen extends javax.swing.JFrame {
             User user2 = this.netWork.getDataById(id2);
             ligacao = this.netWork.isCaminhoTf(user1, user2);
             if(ligacao == true){
-                Iterator<Post> itPosts;
-                itPosts = user2.getPosts().iterator();
+                
                
-            textArea.setText("");
-            textArea.append("Publicções de "+user2.getName());
-            while (itPosts.hasNext()) {
-              Post p = itPosts.next();
-              
-               textArea.append( "\nTítulo: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\nPrivacidade: "+p.getPrivacy()+"\n");
-             
-            }
+                textArea.setText("");
+                textArea.append("Publicções de "+user2.getName());
+                textArea.append(user2.getPostsToString());
             }else{
                 Iterator<Post> itPosts;
                 itPosts = user2.getPosts().iterator();
@@ -887,7 +846,16 @@ public class MainScreen extends javax.swing.JFrame {
         String[] tokens = idtemp.split("-");
         long id1 = Long.parseLong(tokens[0]);
         User user1 = this.netWork.getDataById(id1);
-        this.netWork.imprimeDados(user1);
+        textArea.setText("");
+        
+        Iterator<User> it = this.netWork.iteratorBFS(user1,1);
+        User u;
+        u = it.next();
+        
+        textArea.append("Id:" + u.getID());
+        textArea.append("\nNome:" + u.getName());
+        textArea.append("\nAmigos:\n");
+        textArea.append(this.netWork.imprimeUtilizadores(it));
     }//GEN-LAST:event_showFriendsActionPerformed
 
     /**
@@ -1050,12 +1018,11 @@ public class MainScreen extends javax.swing.JFrame {
         boolean error = false;
         try {
             br = new BufferedReader(new FileReader(filePath));
-            String currentLine;
-            String corpoPost;
-            String tituloPost;
-            Calendar date;
+            String currentLine,corpoPost,tituloPost,corpoComment;
+            
+            Calendar date,dateComment;
             Privacy privacidadePost;
-            User user;
+            User user,userComment;
             Post post;
 
             int count = 1;
@@ -1064,11 +1031,12 @@ public class MainScreen extends javax.swing.JFrame {
                 boolean correctVertex = false;
                 boolean correctEdge = false;
 
-                if (tokens.length == 4) {
+                if (tokens.length == 6) {
                     corpoPost = tokens[0];
                     tituloPost = tokens[1];
                     int privacidadeFile=Integer.parseInt(tokens[2]);
                     date = Calendar.getInstance();
+                    dateComment = Calendar.getInstance();
                     if (privacidadeFile == 0){
                         privacidadePost= Privacy.privada;
                     }else{
@@ -1076,9 +1044,12 @@ public class MainScreen extends javax.swing.JFrame {
                     }
                     long userID = Long.parseLong(tokens[3]);
                     user = netWork.getDataById(userID);
-                    
+                    long userCommentID = Long.parseLong(tokens[5]);
+                    userComment = netWork.getDataById(userCommentID);
+                    corpoComment = tokens[4];
                     post = new Post(corpoPost, tituloPost, date, privacidadePost);
                     user.publicarPost(post);
+                    post.ComentarPost(new Comment(dateComment,corpoComment,userComment));
 
                 }
                 count++;
@@ -1113,22 +1084,7 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }
 
-    public void loadUsers() {
-
-        Users.removeAllItems();
-
-        ArrayList<User> l = new ArrayList<>();
-
-        for (int i = 0; i < this.netWork.size(); i++) {
-
-            if (!l.contains(netWork.getVertices()[i])) {
-                l.add(netWork.getVertices()[i]);
-                Users.addItem(netWork.getVertices()[i].getID() + "-" + netWork.getVertices()[i].getName());
-
-            }
-        }
-    }
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteUserButton;

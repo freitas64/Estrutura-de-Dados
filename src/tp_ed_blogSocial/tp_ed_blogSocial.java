@@ -59,7 +59,7 @@ public class tp_ed_blogSocial {
         Comment c1 = new Comment(new GregorianCalendar(2018, 03, 8), "Primeiro Comentário", user3);
         Comment c2 = new Comment(new GregorianCalendar(2018, 03, 8), "Segundo Comentário", user2);
         Comment c3 = new Comment(new GregorianCalendar(2018, 02, 8), "Terceiro Comentário", user1);
-        Comment c4 = new Comment(new GregorianCalendar(2018, 02, 8), "Quarto Comentário", user2);
+        Comment c4 = new Comment(new GregorianCalendar(2018, 03, 8), "Quarto Comentário", user2);
         
         user1.publicarPost(p3);
         user1.publicarPost(p1);
@@ -123,7 +123,7 @@ public class tp_ed_blogSocial {
         
          System.out.println("Teste");
          
-         it = r.iteratorBFS(user1);
+        it = r.iteratorBFS(user1);
         User p;
         p = it.next();
 

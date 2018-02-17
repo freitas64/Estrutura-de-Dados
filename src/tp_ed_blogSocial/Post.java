@@ -7,6 +7,7 @@ package tp_ed_blogSocial;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Iterator;
 
 
 import recursos.*;
@@ -102,6 +103,23 @@ public class Post implements Comparable {
 //      }
 //      System.out.println("\t\t------------------------------------------");
         return comentarios;
+    }
+    public String getCommentsToString(){
+                 
+        String comentario= "";
+        
+        Iterator it = this.comentarios.iterator();
+        Comment c;           
+        while(!it.hasNext()){
+         
+                c =  (Comment) it.next();
+               comentario += "\tComentário:" + c.getComment()+
+                "\n\tData:" + c.getDate()+
+                "\n\tUtilizador:"+c.getUser().getID()+"-"+c.getUser().getName()+
+                       "\n";
+                
+     }
+        return comentario;
     }
     public void setDate(Calendar date){
         this.date = date;

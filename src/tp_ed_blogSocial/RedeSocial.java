@@ -8,6 +8,7 @@ package tp_ed_blogSocial;
 import adt.RedeSocialADT;
 import exception.ElementNotFoundException;
 import exception.EmptyCollectionException;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Scanner;
 
@@ -308,31 +309,37 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
         
          return imprimeUtilizadores(it);
     }
-    
+//     public void pedidoPatrocinado(User user, User target){
+//        String emailKeyboard;
+//         String usernameKeyboard;
+//         Scanner scan = new Scanner(System.in);
+//         custoPedido = calcularCredito(user, target);
+//        
+//        if (isCaminho(user, target).equals(Ligacao.Patrocinado)){
+//                System.out.println("Insira email do utilizador a quem deseja fazer o pedido");
+//                emailKeyboard = scan.nextLine();
+//                System.out.println("Insira o username a quem deseja fazer o pedido");
+//                usernameKeyboard = scan.nextLine();
+//                if (emailKeyboard.equals(target.getEmail()) && usernameKeyboard.equals(target.getUsername())){
+//                    
+//                    target.adicionarPedido(user);
+//                    user.setCredits(user.getCredits()-custoPedido);
+//                    System.out.println("Pedido patrocinado efetuado com sucesso");
+//                }else{
+//                    System.out.println("E-Mail ou Username inválidos");
+//                }
+//            
+//            
+//        }else{
+//            System.out.println("Não pode adicionar pedido pois não existe caminho entre ambos");
+//        }
+//    }
     public void pedidoPatrocinado(User user, User target){
-        String emailKeyboard;
-         String usernameKeyboard;
-         Scanner scan = new Scanner(System.in);
-         custoPedido = calcularCredito(user, target);
         
-        if (isCaminho(user, target).equals(Ligacao.Patrocinado)){
-                System.out.println("Insira email do utilizador a quem deseja fazer o pedido");
-                emailKeyboard = scan.nextLine();
-                System.out.println("Insira o username a quem deseja fazer o pedido");
-                usernameKeyboard = scan.nextLine();
-                if (emailKeyboard.equals(target.getEmail()) && usernameKeyboard.equals(target.getUsername())){
-                    
-                    target.adicionarPedido(user);
-                    user.setCredits(user.getCredits()-custoPedido);
-                    System.out.println("Pedido patrocinado efetuado com sucesso");
-                }else{
-                    System.out.println("E-Mail ou Username inválidos");
-                }
-            
-            
-        }else{
-            System.out.println("Não pode adicionar pedido pois não existe caminho entre ambos");
-        }
+         custoPedido = calcularCredito(user, target);
+         target.adicionarPedido(user);
+         user.setCredits(user.getCredits()-custoPedido);
+          
     }
     
     public User[] getVertices() {
@@ -345,10 +352,12 @@ public class RedeSocial extends Rede<User> implements RedeSocialADT<User>{
         while (it.hasNext()) {
             u = it.next();
             s+=              
-                u.getID()+"-"+u.getName()+"\n";
+                "           "+u.getID()+"-"+u.getName()+"\n";
         }
         return s;
     }
+    
+    
     
    
 }

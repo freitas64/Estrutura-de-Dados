@@ -7,6 +7,7 @@ package tp_ed_blogSocial;
 
 import exception.ElementNotFoundException;
 import exception.EmptyCollectionException;
+import java.util.Iterator;
 
 import  recursos.*;
 import java.util.concurrent.atomic.AtomicLong;
@@ -124,5 +125,23 @@ public class User implements Comparable{
         }
         return result;
     }
-   
+   public String getPostsToString (){
+       String post="";
+        Iterator<Post> it = this.posts.iterator();
+        Post p;
+               
+         while (it.hasNext()) {
+             p= it.next();
+             
+             post+= "Título: "+p.getTitle()+"\n";
+             post+= "Corpo: "+p.getPost()+"\n";
+             post += "Data: "+p.getDate()+"\n";
+             post += "Privacidade: "+p.getPrivacy()+"\n";
+             post += "Comentários:\n";
+             post += p.getCommentsToString();
+             post += "\n-------------------------------------------------------\n";
+             
+         }
+        return post;
+    }
 }
