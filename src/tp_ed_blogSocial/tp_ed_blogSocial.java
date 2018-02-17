@@ -103,9 +103,18 @@ public class tp_ed_blogSocial {
         p2.getComments();
         
         p2.ComentarPost(c4);
-        p2.getComments();
+         Iterator<Comment> itComment;
+                itComment = p2.getComments().iterator();
+                while(!itComment.hasNext()){
+                Comment c;
+                c =  (Comment) itComment.next();
+                System.out.println("\t------------------------------------------");
+                System.out.println("\tComentário:" + c.getComment());
+                System.out.println("\tData:" + c.getDate());
+                System.out.println("\tUtilizador:"+c.getUser().getName());
+                
         
-        
+                }
         
          System.out.println("Teste");
          

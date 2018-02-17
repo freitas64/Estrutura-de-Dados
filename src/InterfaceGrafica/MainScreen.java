@@ -724,11 +724,10 @@ public class MainScreen extends javax.swing.JFrame {
             
             while (itPosts.hasNext()) {
               
-                Post p  = (Post) itPosts.next();
+               Post p  = (Post) itPosts.next();
                 
-                  textArea.append( "Título: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\n"
-                         + "---------------------------------------------\n");
-                  textArea.append( "\nComentários:\n");
+                  textArea.append( "Título: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\n");
+                  textArea.append( "Comentários:");
                 
                 p.ComentarPost(new Comment(date, "cena", new User("Paneleiro", "paneeiro@email.com", "gay", 10)));
                 p.ComentarPost(new Comment(new GregorianCalendar(2018, 1, 17, 00, 13), "xispe", new User("lesbica", "lesbica@email.com", "fessting", 10)));
@@ -736,15 +735,16 @@ public class MainScreen extends javax.swing.JFrame {
                 Iterator<Comment> itComment;
                 itComment = p.getComments().iterator();
                 while(!itComment.hasNext()){
-            Comment c;
-               c =  (Comment) itComment.next();
-                textArea.append("\t\t------------------------------------------");
-                textArea.append("\t\tComentário:" + c.getComment());
-                textArea.append("\t\tData:" + c.getDate());
-                textArea.append("\t\tUtilizador:"+c.getUser().getName());
+                Comment c;
+                c =  (Comment) itComment.next();
+                
+                textArea.append("\n\tComentário:" + c.getComment());
+                textArea.append("\n\tData:" + c.getDate());
+                textArea.append("\n\tUtilizador:"+c.getUser().getName());
+                textArea.append("\n\t------------------------------------------");
                
       }
-                s += "----------------FIM POST--------------------\n";
+               
                  
                 
             }

@@ -68,7 +68,20 @@ public class Post implements Comparable {
     }
 
     public DoubleOrderedList getComments(){
-        
+//        String result="";
+//      Iterator it = comentarios.iterator();
+//                     
+//      while(!it.hasNext()){
+//             
+//          Comment c;
+//                c =  (Comment) it.next();
+//               result += "\n\tComentário:" + c.getComment()+
+//                "\n\tData:" + c.getDate()+
+//                "\n\tUtilizador:"+c.getUser().getName()+"\n\t------------------------------------------\n";
+//                
+//     }
+//      
+//        return result;
 //      Iterator it = comentarios.iterator();
 //                     
 //       System.out.println("Post:");

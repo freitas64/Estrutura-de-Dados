@@ -41,39 +41,17 @@ public class EditFriendScreen extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        registarPessoa = new javax.swing.JButton();
-        removerPessoa = new javax.swing.JButton();
-        amigos = new javax.swing.JButton();
-        inimigos = new javax.swing.JButton();
+        commentPost = new javax.swing.JButton();
         back2 = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        postList = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        registarPessoa.setText("Registar (Utilizador)");
-        registarPessoa.addActionListener(new java.awt.event.ActionListener() {
+        commentPost.setText("Comentar publicação");
+        commentPost.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                registarPessoaActionPerformed(evt);
-            }
-        });
-
-        removerPessoa.setText("Remover (Utilizador)");
-        removerPessoa.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                removerPessoaActionPerformed(evt);
-            }
-        });
-
-        amigos.setText("Amigos");
-        amigos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                amigosActionPerformed(evt);
-            }
-        });
-
-        inimigos.setText("Inimigos");
-        inimigos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inimigosActionPerformed(evt);
+                commentPostActionPerformed(evt);
             }
         });
 
@@ -84,115 +62,42 @@ public class EditFriendScreen extends javax.swing.JFrame {
             }
         });
 
+        postList.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(postList);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(82, 82, 82)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(registarPessoa)
-                    .addComponent(removerPessoa)
-                    .addComponent(inimigos)
-                    .addComponent(amigos))
-                .addContainerGap(147, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(back2)
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(back2, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(commentPost, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(61, 61, 61)
-                .addComponent(registarPessoa)
-                .addGap(18, 18, 18)
-                .addComponent(removerPessoa)
-                .addGap(18, 18, 18)
-                .addComponent(amigos)
-                .addGap(18, 18, 18)
-                .addComponent(inimigos)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 34, Short.MAX_VALUE)
-                .addComponent(back2)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(commentPost)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(back2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 294, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void registarPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registarPessoaActionPerformed
+    private void commentPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentPostActionPerformed
 
         
-    }//GEN-LAST:event_registarPessoaActionPerformed
-
-    private void removerPessoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerPessoaActionPerformed
-
-        
-
-    }//GEN-LAST:event_removerPessoaActionPerformed
-
-    private void amigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_amigosActionPerformed
-
-        int i;
-        String s = "Introduza o id da Pessoa 1 \n";
-
-        for (i = 0; i < this.screen.netWork.size(); i++) {
-            s += "" + this.screen.netWork.getVertices()[i].getID() + "-" + this.screen.netWork.getVertices()[i].getName();
-            s += "\n";
-        }
-
-        int j;
-        String s1 = "Introduza o id da Pessoa 2 \n";
-
-        for (j = 0; j < this.screen.netWork.size(); j++) {
-            s1 += "" + this.screen.netWork.getVertices()[j].getID() + "-" + this.screen.netWork.getVertices()[j].getName();
-            s1 += "\n";
-        }
-
-        String nome1 = JOptionPane.showInputDialog(s);
-        String nome2 = JOptionPane.showInputDialog(s1);
-
-        long id1 = Long.parseLong(nome1);
-        long id2 = Long.parseLong(nome2);
-
-        try {
-            this.screen.netWork.addEdgeById(id1, id2);
-        } catch (EmptyCollectionException ex) {
-            Logger.getLogger(EditFriendScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_amigosActionPerformed
-
-    private void inimigosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inimigosActionPerformed
-
-        int i;
-        String s = "Introduza o id da Pessoa 1 \n";
-
-        for (i = 0; i < this.screen.netWork.size(); i++) {
-            s += "" + this.screen.netWork.getVertices()[i].getID() + "-" + this.screen.netWork.getVertices()[i].getName();
-            s += "\n";
-        }
-
-        int j;
-        String s1 = "Introduza o id da Pessoa 2 \n";
-
-        for (j = 0; j < this.screen.netWork.size(); j++) {
-            s1 += "" + this.screen.netWork.getVertices()[j].getID() + "-" + this.screen.netWork.getVertices()[j].getName();
-            s1 += "\n";
-        }
-
-        String nome1 = JOptionPane.showInputDialog(s);
-        String nome2 = JOptionPane.showInputDialog(s1);
-
-        long id1 = Long.parseLong(nome1);
-        long id2 = Long.parseLong(nome2);
-
-        try {
-            this.screen.netWork.removeEdgeById(id1, id2);
-        } catch (EmptyCollectionException ex) {
-            Logger.getLogger(EditFriendScreen.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-    }//GEN-LAST:event_inimigosActionPerformed
+    }//GEN-LAST:event_commentPostActionPerformed
 
     private void back2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_back2ActionPerformed
         this.screen.setEnabled(true);
@@ -242,10 +147,9 @@ public class EditFriendScreen extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton amigos;
     private javax.swing.JButton back2;
-    private javax.swing.JButton inimigos;
-    private javax.swing.JButton registarPessoa;
-    private javax.swing.JButton removerPessoa;
+    private javax.swing.JButton commentPost;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> postList;
     // End of variables declaration//GEN-END:variables
 }
