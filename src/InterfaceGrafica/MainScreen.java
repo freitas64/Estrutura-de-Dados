@@ -94,6 +94,7 @@ public class MainScreen extends javax.swing.JFrame {
         textArea = new javax.swing.JTextArea();
         jPanel4 = new javax.swing.JPanel();
         showFriendRequestButton = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -177,12 +178,12 @@ public class MainScreen extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(RegisterUserButton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DeleteUserButton)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
 
-        jLabel5.setText("--------------------------------------------------------------");
+        jLabel5.setText("-------------------------------------------------------------------------------");
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 255));
         jLabel6.setText("Opções Gerais");
@@ -194,7 +195,7 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("--------------------------------------------------------------");
+        jLabel8.setText("-------------------------------------------------------------------------------");
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 255));
         jLabel7.setText("Opções de utilizador");
@@ -223,6 +224,11 @@ public class MainScreen extends javax.swing.JFrame {
         });
 
         showFriendPost.setText("Ver Publicações de outro utilizador");
+        showFriendPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                showFriendPostActionPerformed(evt);
+            }
+        });
 
         Users.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -257,6 +263,8 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Abrir ficheiro de publicações");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -269,39 +277,44 @@ public class MainScreen extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(OpenFile)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(OpenFriendshipsFileButton))
+                                .addComponent(OpenFriendshipsFileButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton1))
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jButton2)
-                                    .addComponent(jLabel7))
-                                .addGap(563, 563, 563))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel9)
-                                    .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(showFriendPost)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(showFriendRequestButton))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel6)
+                                            .addComponent(jButton2)
+                                            .addComponent(jLabel7))
+                                        .addGap(559, 559, 559))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(FriendShipRequestButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(PublishButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(showUserSelectedPosts)))
-                                .addGap(43, 43, 43)))
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 496, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel9)
+                                            .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(showFriendPost)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(showFriendRequestButton))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(FriendShipRequestButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(PublishButton)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(showUserSelectedPosts)))
+                                        .addGap(43, 43, 43)))
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -314,7 +327,8 @@ public class MainScreen extends javax.swing.JFrame {
                         .addGap(4, 4, 4)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(OpenFile)
-                            .addComponent(OpenFriendshipsFileButton))
+                            .addComponent(OpenFriendshipsFileButton)
+                            .addComponent(jButton1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel5)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -322,14 +336,14 @@ public class MainScreen extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel8)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 34, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 56, Short.MAX_VALUE)
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(776, 776, 776))
                     .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -694,9 +708,8 @@ public class MainScreen extends javax.swing.JFrame {
         String[] tokens = idtemp.split("-");
         long id = Long.parseLong(tokens[0]);
         User user = this.netWork.getDataById(id);
-        
-        Calendar date;
-        date = Calendar.getInstance();
+        Calendar date = Calendar.getInstance();
+       
         
         if (user.getPosts().isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Não tem nenhuma publicação", "INFO", JOptionPane.INFORMATION_MESSAGE);
@@ -713,20 +726,30 @@ public class MainScreen extends javax.swing.JFrame {
               
                 Post p  = (Post) itPosts.next();
                 
-                 s += "Título: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\n"
-                         + "---------------------------------------------\n";
-                //s+= "\nComentários:\n";
-                //p.getComments();
-                /**p.ComentarPost(new Comment(date, "cena", new User("Paneleiro", "paneeiro@email.com", "gay", 10)));
+                  textArea.append( "Título: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\n"
+                         + "---------------------------------------------\n");
+                  textArea.append( "\nComentários:\n");
+                
+                p.ComentarPost(new Comment(date, "cena", new User("Paneleiro", "paneeiro@email.com", "gay", 10)));
                 p.ComentarPost(new Comment(new GregorianCalendar(2018, 1, 17, 00, 13), "xispe", new User("lesbica", "lesbica@email.com", "fessting", 10)));
-                System.out.println(p.getComments());
-                s+=p.getComments();
+                
+                Iterator<Comment> itComment;
+                itComment = p.getComments().iterator();
+                while(!itComment.hasNext()){
+            Comment c;
+               c =  (Comment) itComment.next();
+                textArea.append("\t\t------------------------------------------");
+                textArea.append("\t\tComentário:" + c.getComment());
+                textArea.append("\t\tData:" + c.getDate());
+                textArea.append("\t\tUtilizador:"+c.getUser().getName());
+               
+      }
                 s += "----------------FIM POST--------------------\n";
-                 */
+                 
                 
             }
             
-            textArea.append(s);
+            
             
               
             
@@ -735,6 +758,10 @@ public class MainScreen extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_showUserSelectedPostsActionPerformed
+
+    private void showFriendPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFriendPostActionPerformed
+                
+    }//GEN-LAST:event_showFriendPostActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,6 +947,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton PublishButton;
     private javax.swing.JButton RegisterUserButton;
     private javax.swing.JComboBox Users;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
