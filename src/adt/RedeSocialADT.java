@@ -5,6 +5,10 @@
  */
 package adt;
 
+import exception.ElementNotFoundException;
+import exception.EmptyCollectionException;
+import java.util.Iterator;
+import tp_ed_blogSocial.Post;
 import tp_ed_blogSocial.RedeSocial;
 import tp_ed_blogSocial.User;
 
@@ -31,23 +35,58 @@ public interface RedeSocialADT<T> extends RedeADT<T>{
      */
     public RedeSocial.Ligacao isCaminho(User user1, User user2);
     
+    
+   
     /**
-     * Imprime todos as dados(utilizadores), existentes nos vertices.
+     * Calcula custo de caminho entre dois utilizadores
+     *
+     * @param user1
+     * @param user2
+     * @return
      */
-    public void imprimeTudo();
+    public int calcularCredito(User user1, User user2);
+      /**
+     * Verifica e adiciona amizade entre dois utilizadores
+     *
+      * @param user1
+     * @param user2
+     * @return
+     */
+    public RedeSocial.Ligacao verificarPedido (User user1, User target);
+    
+    /**
+     * Aceitar pedido de amizade e adicionar aresta à rede
+     *
+     * @param user1
+     * @param user2
+     * @return
+     */
+     public void aceitarPedido (User user1, User target) throws ElementNotFoundException, EmptyCollectionException;
+     /**
+     * Devolve alcance da mensagem de uma publicação
+     *
+     * @param user1
+     * @param user2
+     * @return
+     */       
+    public String alcanceMensagem(User user, Post post);
+    
     
      /**
-     * Imprime todos os dados(Utilizadores) de toda a matriz
+     * Imprime utilizadores
      *
+     * 
      * @return
      */
-    public String imprimetudoString();
+    public String imprimeUtilizadores(Iterator<User> it);
     
-      /**
-     * Imprime os dados de uma pessoa e as amigos da mesma.
+     public User[] getVertices();
+     
+     /**
+     * Efetua um pedido patrocinado quando a ligação entre os dois utilizadores assim requer
      *
-     * @param u
+     * 
      * @return
      */
-    public String imprimeDadosSTring(User u);
+     public void pedidoPatrocinado(User user, User target);
 }

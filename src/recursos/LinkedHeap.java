@@ -11,7 +11,7 @@ import exception.EmptyCollectionException;
 
 /**
  *
- * @author tony
+ * @author ruifreitas
  */
 public class LinkedHeap<T> extends LinkedBinaryTree<T> implements HeapADT<T> {
 

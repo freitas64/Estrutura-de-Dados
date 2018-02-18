@@ -15,6 +15,3 @@ Pinto;pintodacosta@fcp.pt;pintodacostafcp;10
 Henrique;henriquecunha@mail.com;henriquecunha;10
 Luísa;luisafaria@mail.com;luisafaria;10
 Raul;raul@mail.com;raulsilva;10
-1;1;1;10
-coisa;coisa;coisa;10
-triste;triste ;triste;10

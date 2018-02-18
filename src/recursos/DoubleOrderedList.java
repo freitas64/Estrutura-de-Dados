@@ -9,7 +9,7 @@ import adt.*;
 
 /**
  *
- * @author User
+ * @author ruifreitas
  */
 public class DoubleOrderedList<T> extends DoubleList<T> implements OrderedListADT<T> {
 

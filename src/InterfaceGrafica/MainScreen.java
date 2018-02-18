@@ -599,7 +599,7 @@ public class MainScreen extends javax.swing.JFrame {
             User user1 = this.netWork.getDataById(id);
             User target = this.netWork.getDataById(id2);
 
-            tipo = this.netWork.verificarPedidoGrafica(user1, target);
+            tipo = this.netWork.verificarPedido(user1, target);
 
             if (tipo == Ligacao.Amigo) {
                 JOptionPane.showMessageDialog(this, "Já são amigos");
@@ -737,6 +737,7 @@ public class MainScreen extends javax.swing.JFrame {
         
         if (user.getPosts().isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Não tem nenhuma publicação", "INFO", JOptionPane.INFORMATION_MESSAGE);
+               textArea.setText("");  
         } else {
             textArea.setText("");     
             textArea.append("Publicações de "+user.getName()+"\n---------------------------------------------\n");

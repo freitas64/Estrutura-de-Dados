@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author User
+ * @author ruifreitas
  */
 public class DoubleList<T> implements ListADT<T>, Iterable<T> {
 
