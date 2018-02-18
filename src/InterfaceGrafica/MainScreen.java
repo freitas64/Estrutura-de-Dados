@@ -9,7 +9,7 @@ import exception.ElementNotFoundException;
 import tp_ed_blogSocial.*;
 
 import exception.EmptyCollectionException;
-
+import java.awt.Component;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -29,12 +29,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.ListModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import recursos.ArrayOrderedList;
 import recursos.DoubleOrderedList;
 import recursos.LinkedStack;
@@ -52,7 +57,8 @@ public class MainScreen extends javax.swing.JFrame {
     RedeSocial netWork = new RedeSocial();
     Iterator<User> it;
     private MainScreen screen;
-    
+    private JList mySpriteOptions;
+
     /**
      * Creates new form MainScreen
      */
@@ -60,6 +66,8 @@ public class MainScreen extends javax.swing.JFrame {
         initComponents();
         OpenFriendshipsFileButton.setVisible(false);
         openFilePostsButton.setVisible(false);
+        commentPostButton.setVisible(false);
+
     }
 
     /**
@@ -82,7 +90,7 @@ public class MainScreen extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         RegisterUserButton = new javax.swing.JButton();
         DeleteUserButton = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        showNetwork = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
@@ -97,6 +105,7 @@ public class MainScreen extends javax.swing.JFrame {
         showFriendRequestButton = new javax.swing.JButton();
         openFilePostsButton = new javax.swing.JButton();
         showFriends = new javax.swing.JButton();
+        commentPostButton = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -159,10 +168,10 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
-        jButton2.setText("Ver Relações");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        showNetwork.setText("Ver Relações");
+        showNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                showNetworkActionPerformed(evt);
             }
         });
 
@@ -179,7 +188,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jButton2))
+                    .addComponent(showNetwork))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -192,7 +201,7 @@ public class MainScreen extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(DeleteUserButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(showNetwork)
                 .addContainerGap(11, Short.MAX_VALUE))
         );
 
@@ -245,22 +254,17 @@ public class MainScreen extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 100, Short.MAX_VALUE)
+            .addGap(0, 195, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 37, Short.MAX_VALUE)
+            .addGap(0, 70, Short.MAX_VALUE)
         );
 
         showFriendRequestButton.setText("Ver pedidos de amizade");
         showFriendRequestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showFriendRequestButtonActionPerformed(evt);
-            }
-        });
-        showFriendRequestButton.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                showFriendRequestButtonKeyPressed(evt);
             }
         });
 
@@ -278,60 +282,66 @@ public class MainScreen extends javax.swing.JFrame {
             }
         });
 
+        commentPostButton.setBackground(new java.awt.Color(102, 102, 102));
+        commentPostButton.setFont(new java.awt.Font("Copperplate", 1, 14)); // NOI18N
+        commentPostButton.setText("Comentar publicação");
+        commentPostButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                commentPostButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel7)
-                                        .addGap(559, 559, 559))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel9)
-                                            .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(showFriendPost)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(showFriendRequestButton))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(FriendShipRequestButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(PublishButton)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(showUserSelectedPosts))
-                                            .addComponent(showFriends))
-                                        .addGap(43, 43, 43)))
-                                .addGap(0, 0, Short.MAX_VALUE))
+                                .addComponent(jLabel7)
+                                .addGap(559, 559, 559))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel9)
+                                    .addComponent(Users, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addComponent(OpenFile)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(OpenFriendshipsFileButton)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(openFilePostsButton)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                                        .addComponent(showFriendPost)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(showFriendRequestButton))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(FriendShipRequestButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(PublishButton)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(showUserSelectedPosts))
+                                    .addComponent(showFriends))
+                                .addGap(43, 43, 43)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel5)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(OpenFile)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(OpenFriendshipsFileButton)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(openFilePostsButton)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(100, 100, 100)))
-                .addContainerGap(11, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(5, 5, 5)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(commentPostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -367,15 +377,16 @@ public class MainScreen extends javax.swing.JFrame {
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 36, Short.MAX_VALUE)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(770, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(showFriends)
                         .addGap(23, 23, 23)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(107, 107, 107)
+                        .addComponent(commentPostButton, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 181, Short.MAX_VALUE)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
         pack();
@@ -400,7 +411,6 @@ public class MainScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "File can´t be loaded");
             }
             loadLinks();
-            
 
             if (occurredErrors) {
                 JOptionPane.showMessageDialog(this, "File loaded but one or "
@@ -415,7 +425,7 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_UsersActionPerformed
 
     private void OpenFriendshipsFileButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OpenFriendshipsFileButtonActionPerformed
-        
+
         JFileChooser fc = new JFileChooser();
         if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
@@ -428,7 +438,6 @@ public class MainScreen extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "File can´t be loaded");
             }
             loadLinks();
-            
 
             if (occurredErrors) {
                 JOptionPane.showMessageDialog(this, "File loaded but one or "
@@ -438,14 +447,14 @@ public class MainScreen extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_OpenFriendshipsFileButtonActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void showNetworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showNetworkActionPerformed
 
         textArea.setText(null);
 
         String s = "";
         s = netWork.toString();
         textArea.append(s);
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_showNetworkActionPerformed
 
     private void RegisterUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegisterUserButtonActionPerformed
         int creditos = 10;
@@ -466,7 +475,6 @@ public class MainScreen extends javax.swing.JFrame {
                         System.err.println("IOException: " + ioe.getMessage());
                     }
                     this.loadLinks();
-                    
 
                 } else {
                     new MainScreen();
@@ -549,7 +557,6 @@ public class MainScreen extends javax.swing.JFrame {
             }
             boolean successful = tempFile.renameTo(inputFile);
 
-           
             this.loadLinks();
         }
 
@@ -562,10 +569,8 @@ public class MainScreen extends javax.swing.JFrame {
         int respostaPatrocinado;
         int custoPedido;
 
-        String idtemp = (String) Users.getSelectedItem();
-        String[] tokens = idtemp.split("-");
-        long id = Long.parseLong(tokens[0]);
-        User usertemp = this.netWork.getDataById(id);
+       
+       
         ArrayOrderedList<User> arrayUser = new ArrayOrderedList<>();
 
         for (i = 0; i < this.netWork.size(); i++) {
@@ -574,7 +579,7 @@ public class MainScreen extends javax.swing.JFrame {
 
         }
         try {
-            arrayUser.remove(usertemp);
+            arrayUser.remove(getUserFromComboBox());
         } catch (EmptyCollectionException ex) {
             Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ElementNotFoundException ex) {
@@ -596,10 +601,10 @@ public class MainScreen extends javax.swing.JFrame {
         } else {
             long id2 = Long.parseLong(nome);
 
-            User user1 = this.netWork.getDataById(id);
+            
             User target = this.netWork.getDataById(id2);
 
-            tipo = this.netWork.verificarPedido(user1, target);
+            tipo = this.netWork.verificarPedido(getUserFromComboBox(), target);
 
             if (tipo == Ligacao.Amigo) {
                 JOptionPane.showMessageDialog(this, "Já são amigos");
@@ -611,7 +616,7 @@ public class MainScreen extends javax.swing.JFrame {
 
                 } else {
                     if (tipo == Ligacao.Patrocinado) {
-                        custoPedido = this.netWork.calcularCredito(user1, target);
+                        custoPedido = this.netWork.calcularCredito(getUserFromComboBox(), target);
                         respostaPatrocinado = JOptionPane.showConfirmDialog(this, "Apenas pode fazer pedido patrocinado!! \n"
                                 + "Deseja fazer pedido patrocinado?(Custo: " + custoPedido + " créditos)",
                                 "Amizade", JOptionPane.YES_NO_OPTION);
@@ -622,7 +627,7 @@ public class MainScreen extends javax.swing.JFrame {
                             String emailInput = JOptionPane.showInputDialog("Inserir email do utilizador");
                             String usernameInput = JOptionPane.showInputDialog("Inserir username do utilizador");
                             if (emailInput.equals(target.getEmail()) && usernameInput.equals(target.getUsername())) {
-                                this.netWork.pedidoPatrocinado(user1, target);
+                                this.netWork.pedidoPatrocinado(getUserFromComboBox(), target);
                                 JOptionPane.showMessageDialog(this, "Pedido de amizade efetuado com sucesso\n"
                                         + "Foram-lhe retirados " + custoPedido + " créditos");
 
@@ -645,61 +650,56 @@ public class MainScreen extends javax.swing.JFrame {
     private void PublishButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PublishButtonActionPerformed
         Calendar date;
         Privacy privacy;
-        String idtemp = (String) Users.getSelectedItem();
-        String[] tokens = idtemp.split("-");
-        String texto ="Escolha a privacidade da mensagem. Insira 1(privada) ou 2(publica)";
-        long id = Long.parseLong(tokens[0]);
-        User user = this.netWork.getDataById(id);
+        
+        String texto = "Escolha a privacidade da mensagem. Insira 1(privada) ou 2(publica)";
+        
+        
         String titulo = JOptionPane.showInputDialog("Insira o título da publicação");
         String corpoPublicação = JOptionPane.showInputDialog("Insira o corpo da publicação");
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMMM yyy HH:mm");
         date = Calendar.getInstance();
         String privacidade = JOptionPane.showInputDialog(texto);
         int opcao = Integer.parseInt(privacidade);
-        
+
         if (opcao == 1) {
             privacy = Privacy.privada;
             Post post = new Post(corpoPublicação, titulo, date, privacy);
-            user.publicarPost(post);            
-            this.netWork.alcanceMensagem(user, post);
+            getUserFromComboBox().publicarPost(post);
+            this.netWork.alcanceMensagem(getUserFromComboBox(), post);
             JOptionPane.showMessageDialog(this, "Publicado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
             textArea.setText("");
             textArea.append("Alcance privado para os utilizadores\n");
-            textArea.append(this.netWork.alcanceMensagem(user, post));
+            textArea.append(this.netWork.alcanceMensagem(getUserFromComboBox(), post));
 
         } else {
             if (opcao == 2) {
-            privacy = Privacy.publica;
-            Post post = new Post(corpoPublicação, titulo, date, privacy);
-            user.publicarPost(post);            
-            this.netWork.alcanceMensagem(user, post);
-            JOptionPane.showMessageDialog(this, "Publicado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-            textArea.setText("");
-            textArea.append("Alcance privado para os utilizadores\n");
-            textArea.append(this.netWork.alcanceMensagem(user, post));
+                privacy = Privacy.publica;
+                Post post = new Post(corpoPublicação, titulo, date, privacy);
+                getUserFromComboBox().publicarPost(post);
+                this.netWork.alcanceMensagem(getUserFromComboBox(), post);
+                JOptionPane.showMessageDialog(this, "Publicado com sucesso", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                textArea.setText("");
+                textArea.append("Alcance privado para os utilizadores\n");
+                textArea.append(this.netWork.alcanceMensagem(getUserFromComboBox(), post));
 
-        } else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Opção Inválida", "Erro", JOptionPane.WARNING_MESSAGE);
-            
+
             }
-            
+
         }
     }//GEN-LAST:event_PublishButtonActionPerformed
 
     private void showFriendRequestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFriendRequestButtonActionPerformed
 
-        String idtemp = (String) Users.getSelectedItem();
-        String[] tokens = idtemp.split("-");
-        long id = Long.parseLong(tokens[0]);
-        User user = this.netWork.getDataById(id);
-        ArrayOrderedList<User> arrayUser = user.getPedidos();
+        
+        ArrayOrderedList<User> arrayUser = getUserFromComboBox().getPedidos();
         if (arrayUser.isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Não tem nenhum pedido", "INFO", JOptionPane.INFORMATION_MESSAGE);
         } else {
 
             String s = "Introduza o ID da Pessoa que deseja aceitar pedido\n";
 
-            
             Iterator it = arrayUser.iterator();
             User p;
             while (it.hasNext()) {
@@ -712,8 +712,8 @@ public class MainScreen extends javax.swing.JFrame {
             long id2 = Long.parseLong(nome);
             User newfriend = this.netWork.getDataById(id2);
             try {
-                this.netWork.aceitarPedido(user, newfriend);
-                JOptionPane.showMessageDialog(this, "Parabéns. O utilizador " + user.getName()
+                this.netWork.aceitarPedido(getUserFromComboBox(), newfriend);
+                JOptionPane.showMessageDialog(this, "Parabéns. O utilizador " + getUserFromComboBox().getName()
                         + " e o utlizador " + newfriend.getName() + " agora são amigos");
 
             } catch (ElementNotFoundException | EmptyCollectionException ex) {
@@ -723,105 +723,97 @@ public class MainScreen extends javax.swing.JFrame {
 
     }//GEN-LAST:event_showFriendRequestButtonActionPerformed
 
-    private void showFriendRequestButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_showFriendRequestButtonKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_showFriendRequestButtonKeyPressed
-
     private void showUserSelectedPostsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showUserSelectedPostsActionPerformed
-        String idtemp = (String) Users.getSelectedItem();
-        String[] tokens = idtemp.split("-");
-        long id = Long.parseLong(tokens[0]);
-        User user = this.netWork.getDataById(id);
-        Calendar date = Calendar.getInstance();
-       
         
-        if (user.getPosts().isEmpty() == true) {
+
+        if (getUserFromComboBox().getPosts().isEmpty() == true) {
             JOptionPane.showMessageDialog(this, "Não tem nenhuma publicação", "INFO", JOptionPane.INFORMATION_MESSAGE);
-               textArea.setText("");  
+            textArea.setText("");
         } else {
-            textArea.setText("");     
-            textArea.append("Publicações de "+user.getName()+"\n---------------------------------------------\n");
-            
-            
-            textArea.append(user.getPostsToString());
-            
-            
-              
-            
-            
+            textArea.setText("");
+            textArea.append("Publicações de " + getUserFromComboBox().getName() + "\n---------------------------------------------\n");
+
+            textArea.append(getUserFromComboBox().getPostsToString());
+
         }
-        
-        
+
+
     }//GEN-LAST:event_showUserSelectedPostsActionPerformed
 
     private void showFriendPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFriendPostActionPerformed
-        int i;
-        String idtemp = (String) Users.getSelectedItem();
-        String[] tokens = idtemp.split("-");
-        long id1 = Long.parseLong(tokens[0]);
-        User user1 = this.netWork.getDataById(id1);
+        int i = 0;
+
+        
         boolean ligacao;
-       
+
         String s = "Introduza o ID da Pessoa\n";
-       
+
         if (this.netWork.size() == 0) {
             JOptionPane.showMessageDialog(this, "Não existem utilizadores para remover", "Alerta", JOptionPane.WARNING_MESSAGE);
 
         } else {
             ArrayOrderedList<User> arrayUser = new ArrayOrderedList<>();
 
-        for (i = 0; i < this.netWork.size(); i++) {
-            User u = this.netWork.getVertices()[i];
-            arrayUser.add(u);
+            for (i = 0; i < this.netWork.size(); i++) {
+                User u = this.netWork.getVertices()[i];
+                arrayUser.add(u);
 
-        }
+            }
+
             try {
-                arrayUser.remove(user1);
-            } catch (EmptyCollectionException ex) {
-                Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (ElementNotFoundException ex) {
+                arrayUser.remove(getUserFromComboBox());
+            } catch (EmptyCollectionException | ElementNotFoundException ex) {
                 Logger.getLogger(MainScreen.class.getName()).log(Level.SEVERE, null, ex);
             }
-        Iterator it = arrayUser.iterator();
-        User u;
-        while (it.hasNext()) {
-            u = (User) it.next();
-            s += "" + u.getID() + "-" + u.getName();
-            s += "\n";
+            Iterator it = arrayUser.iterator();
+            User u;
+            while (it.hasNext()) {
+                u = (User) it.next();
+                s += "" + u.getID() + "-" + u.getName();
+                s += "\n";
 
-        }
+            }
 
             String nome = JOptionPane.showInputDialog(s);
 
             long id2 = Long.parseLong(nome);
             User user2 = this.netWork.getDataById(id2);
-            ligacao = this.netWork.isCaminhoTf(user1, user2);
-            if(ligacao == true){
-                
-               
+            ligacao = this.netWork.isCaminhoTf(getUserFromComboBox(), user2);
+
+            if (ligacao == true) {
+
                 textArea.setText("");
-                textArea.append("Publicções de "+user2.getName());
+                textArea.append("Publicções de " + user2.getName() + "\n");
                 textArea.append(user2.getPostsToString());
-            }else{
+                commentPostButton.setVisible(true);
+
+            } else {
                 Iterator<Post> itPosts;
                 itPosts = user2.getPosts().iterator();
-               
+
                 textArea.setText("");
-                textArea.append("Publicções de "+user2.getName());
-            while (itPosts.hasNext()) {
-              Post p = itPosts.next();
-                if(p.getPrivacy() == Privacy.publica){
-                    textArea.append( "\nTítulo: " + p.getTitle()+ "\nCorpo: " + p.getPost()+"\nData: "+p.getDate()+"\nPrivacidade: "+p.getPrivacy()+"\n");
-                } 
+                textArea.append("Publicções de " + user2.getName());
+                while (itPosts.hasNext()) {
+                    Post p = itPosts.next();
+                    if (p.getPrivacy() == Privacy.publica) {
+                        textArea.setText("");
+                        textArea.append("Publicções de " + user2.getName() + "\n");
+                        textArea.append("\nID:" + p.getID() + " \nTítulo: " + p.getTitle() + "\nCorpo: " + p.getPost() + "\nData: "
+                                + p.getDate() + "\nPrivacidade: " + p.getPrivacy() + "\nComentários:\n");
+                        textArea.append(p.getCommentsToString());
+                        textArea.append("\n-------------------------------------------------------\n");
+
+                        commentPostButton.setVisible(true);
+
+                    }
+                }
+
             }
-            
-            
-        }
         }
     }//GEN-LAST:event_showFriendPostActionPerformed
 
     private void openFilePostsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFilePostsButtonActionPerformed
-       JFileChooser fc = new JFileChooser();
+        JFileChooser fc = new JFileChooser();
         if (fc.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
             boolean occurredErrors = false;
@@ -832,7 +824,6 @@ public class MainScreen extends javax.swing.JFrame {
                 System.out.println(ex);
                 JOptionPane.showMessageDialog(this, "File can´t be loaded");
             }
-            
 
             if (occurredErrors) {
                 JOptionPane.showMessageDialog(this, "File loaded but one or "
@@ -843,21 +834,34 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_openFilePostsButtonActionPerformed
 
     private void showFriendsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showFriendsActionPerformed
-        String idtemp = (String)Users.getSelectedItem();
-        String[] tokens = idtemp.split("-");
-        long id1 = Long.parseLong(tokens[0]);
-        User user1 = this.netWork.getDataById(id1);
-        textArea.setText("");
         
-        Iterator<User> it = this.netWork.iteratorBFS(user1,1);
+        
+        textArea.setText("");
+
+        Iterator<User> it = this.netWork.iteratorBFS(getUserFromComboBox(), 1);
         User u;
         u = it.next();
-        
+
         textArea.append("Id:" + u.getID());
         textArea.append("\nNome:" + u.getName());
         textArea.append("\nAmigos:\n");
         textArea.append(this.netWork.imprimeUtilizadores(it));
     }//GEN-LAST:event_showFriendsActionPerformed
+
+    private void commentPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentPostButtonActionPerformed
+        User user1 = getUserFromComboBox();
+        String s = "Insira o ID do Post";
+        String nome = JOptionPane.showInputDialog(s);
+        long idPost = Long.parseLong(nome);
+        Post p = user1.getPostByID(idPost);
+        Calendar dateComment;
+        dateComment=Calendar.getInstance();
+        String comentario = JOptionPane.showInputDialog("Insira o comentário");
+        p.ComentarPost(new Comment(dateComment, comentario, user1));
+        
+        commentPostButton.setVisible(false);
+        
+    }//GEN-LAST:event_commentPostButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -893,26 +897,15 @@ public class MainScreen extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                MainScreen main = new MainScreen();
-                main.setVisible(true);
-                
-
-            }
-
-        });
+        java.awt.EventQueue.invokeLater(new RunnableImpl());
 
     }
 
     /**
-     * Reads the file content and adds this content in the StellarLabirynth,
-     * besides verify if some error occurred with the content file
+     * ,
+     * Lêr o ficheiro do mapeamento dos utilizadores e adicionar os mesmo à rede
      *
-     * @param filePath the path of the file that will be read
-     * @return true if some error occurred with file content false otherwise
-     * @throws Exception
+     * 
      */
     public boolean readFileAsString(String filePath) throws Exception {
         if (filePath == null || filePath.trim().equals("")) {
@@ -949,7 +942,7 @@ public class MainScreen extends javax.swing.JFrame {
                 }
                 count++;
                 OpenFile.setVisible(false);
-                 OpenFriendshipsFileButton.setVisible(true);
+                OpenFriendshipsFileButton.setVisible(true);
             }
 
         } catch (Exception ex) {
@@ -993,9 +986,9 @@ public class MainScreen extends javax.swing.JFrame {
 
                 }
                 count++;
-                 OpenFile.setVisible(false);
-                 OpenFriendshipsFileButton.setVisible(false);
-                 openFilePostsButton.setVisible(true);
+                OpenFile.setVisible(false);
+                OpenFriendshipsFileButton.setVisible(false);
+                openFilePostsButton.setVisible(true);
             }
 
         } catch (Exception ex) {
@@ -1007,8 +1000,8 @@ public class MainScreen extends javax.swing.JFrame {
 
         return error;
     }
-    
-     public boolean readPostsFileAsString(String filePath) throws Exception {
+
+    public boolean readPostsFileAsString(String filePath) throws Exception {
         if (filePath == null || filePath.trim().equals("")) {
             throw new Exception("Invalid file path.");
         }
@@ -1019,11 +1012,11 @@ public class MainScreen extends javax.swing.JFrame {
         boolean error = false;
         try {
             br = new BufferedReader(new FileReader(filePath));
-            String currentLine,corpoPost,tituloPost,corpoComment;
-            
-            Calendar date,dateComment;
+            String currentLine, corpoPost, tituloPost, corpoComment;
+
+            Calendar date, dateComment;
             Privacy privacidadePost;
-            User user,userComment;
+            User user, userComment;
             Post post;
 
             int count = 1;
@@ -1035,12 +1028,12 @@ public class MainScreen extends javax.swing.JFrame {
                 if (tokens.length == 6) {
                     corpoPost = tokens[0];
                     tituloPost = tokens[1];
-                    int privacidadeFile=Integer.parseInt(tokens[2]);
+                    int privacidadeFile = Integer.parseInt(tokens[2]);
                     date = Calendar.getInstance();
                     dateComment = Calendar.getInstance();
-                    if (privacidadeFile == 0){
-                        privacidadePost= Privacy.privada;
-                    }else{
+                    if (privacidadeFile == 0) {
+                        privacidadePost = Privacy.privada;
+                    } else {
                         privacidadePost = Privacy.publica;
                     }
                     long userID = Long.parseLong(tokens[3]);
@@ -1050,8 +1043,8 @@ public class MainScreen extends javax.swing.JFrame {
                     corpoComment = tokens[4];
                     post = new Post(corpoPost, tituloPost, date, privacidadePost);
                     user.publicarPost(post);
-                    post.ComentarPost(new Comment(dateComment,corpoComment,userComment));
-
+                    post.ComentarPost(new Comment(dateComment, corpoComment, userComment));
+                    
                 }
                 count++;
                 OpenFriendshipsFileButton.setVisible(false);
@@ -1075,17 +1068,22 @@ public class MainScreen extends javax.swing.JFrame {
      */
     public void loadLinks() {
 
-        
         Users.removeAllItems();
 
         for (int i = 0; i < this.netWork.size(); i++) {
 
             Users.addItem(netWork.getVertices()[i].getID() + "-" + netWork.getVertices()[i].getName());
-            
+
         }
     }
 
-    
+    public User getUserFromComboBox(){
+        String idUser = (String) Users.getSelectedItem();
+        String[] tokens = idUser.split("-");
+        long id1 = Long.parseLong(tokens[0]);
+        User user1 = this.netWork.getDataById(id1);
+        return user1;
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton DeleteUserButton;
@@ -1095,7 +1093,7 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton PublishButton;
     private javax.swing.JButton RegisterUserButton;
     private javax.swing.JComboBox Users;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton commentPostButton;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1112,7 +1110,21 @@ public class MainScreen extends javax.swing.JFrame {
     private javax.swing.JButton showFriendPost;
     private javax.swing.JButton showFriendRequestButton;
     private javax.swing.JButton showFriends;
+    private javax.swing.JButton showNetwork;
     private javax.swing.JButton showUserSelectedPosts;
     private javax.swing.JTextArea textArea;
     // End of variables declaration//GEN-END:variables
+
+    private static class RunnableImpl implements Runnable {
+
+        public RunnableImpl() {
+        }
+
+        @Override
+        public void run() {
+            MainScreen main = new MainScreen();
+            main.setVisible(true);
+            
+        }
+    }
 }

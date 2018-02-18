@@ -132,7 +132,7 @@ public class User implements Comparable{
                
          while (it.hasNext()) {
              p= it.next();
-             
+             post+= "ID: "+p.getID()+"\n";
              post+= "Título: "+p.getTitle()+"\n";
              post+= "Corpo: "+p.getPost()+"\n";
              post += "Data: "+p.getDate()+"\n";
@@ -144,4 +144,21 @@ public class User implements Comparable{
          }
         return post;
     }
+   public Post getPostByID(long id){
+        
+        Iterator<Post> it = posts.iterator();
+        Post p;
+        Post postReturn = new Post();
+         while (it.hasNext()) {
+             p= it.next();
+             if(id == p.getID()){
+                postReturn=p;
+             }
+             
+             
+         }
+        
+        return postReturn;
+    }
+   
 }

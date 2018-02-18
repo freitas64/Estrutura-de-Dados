@@ -8,6 +8,7 @@ package tp_ed_blogSocial;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicLong;
 
 
 import recursos.*;
@@ -19,12 +20,17 @@ import recursos.*;
  * @author ruifreitas
  */
 public class Post implements Comparable {
+
+    public void ComentarPost(String comentario) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
    public enum Privacy {
      publica, privada
     };
    
-   
+   private static final AtomicLong NEXT_ID = new AtomicLong(1);
+    private final long id = NEXT_ID.getAndIncrement();
     private String post,title;
     private Calendar date;
     
@@ -46,7 +52,12 @@ public class Post implements Comparable {
         
     
     }
-    
+    public static AtomicLong getNEXT_ID() {
+        return NEXT_ID;
+    }
+    public long getID(){
+        return id;
+    }
     public String getTitle (){
         return title;
     }
@@ -150,4 +161,6 @@ public class Post implements Comparable {
         return "Title: "+title+"\nCorpo: "+post+"\nPrivacidade: "+privacy
                 +"\nData: "+getDate()+"\n";
     }
+    
+    
 }
