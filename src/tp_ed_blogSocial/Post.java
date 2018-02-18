@@ -124,7 +124,8 @@ public class Post implements Comparable {
         while(!it.hasNext()){
          
                 c =  (Comment) it.next();
-               comentario += "\tComentário:" + c.getComment()+
+               comentario += "\t................................................"
+                       + "\n\tComentário:" + c.getComment()+
                 "\n\tData:" + c.getDate()+
                 "\n\tUtilizador:"+c.getUser().getID()+"-"+c.getUser().getName()+
                        "\n";

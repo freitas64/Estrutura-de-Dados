@@ -147,18 +147,20 @@ public class User implements Comparable{
    public Post getPostByID(long id){
         
         Iterator<Post> it = posts.iterator();
+       
         Post p;
-        Post postReturn = new Post();
+        Post pt = null ;
+        
          while (it.hasNext()) {
              p= it.next();
              if(id == p.getID()){
-                postReturn=p;
+                pt = p;
              }
              
              
          }
         
-        return postReturn;
+        return pt;
     }
    
 }

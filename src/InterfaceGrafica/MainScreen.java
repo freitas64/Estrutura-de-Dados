@@ -58,7 +58,7 @@ public class MainScreen extends javax.swing.JFrame {
     Iterator<User> it;
     private MainScreen screen;
     private JList mySpriteOptions;
-
+private User usertemp;
     /**
      * Creates new form MainScreen
      */
@@ -775,11 +775,17 @@ public class MainScreen extends javax.swing.JFrame {
             }
 
             String nome = JOptionPane.showInputDialog(s);
-
+            if (nome == null) {
+            this.setEnabled(true);
+            this.toFront();
+            this.loadLinks();
+            commentPostButton.setVisible(false);
+            
+        } else{
             long id2 = Long.parseLong(nome);
             User user2 = this.netWork.getDataById(id2);
             ligacao = this.netWork.isCaminhoTf(getUserFromComboBox(), user2);
-
+            this.usertemp=user2;
             if (ligacao == true) {
 
                 textArea.setText("");
@@ -792,12 +798,12 @@ public class MainScreen extends javax.swing.JFrame {
                 itPosts = user2.getPosts().iterator();
 
                 textArea.setText("");
-                textArea.append("Publicções de " + user2.getName());
+                textArea.append("Publicações de " + user2.getName());
                 while (itPosts.hasNext()) {
                     Post p = itPosts.next();
                     if (p.getPrivacy() == Privacy.publica) {
                         textArea.setText("");
-                        textArea.append("Publicções de " + user2.getName() + "\n");
+                        textArea.append("Publicações de " + user2.getName() + "\n");
                         textArea.append("\nID:" + p.getID() + " \nTítulo: " + p.getTitle() + "\nCorpo: " + p.getPost() + "\nData: "
                                 + p.getDate() + "\nPrivacidade: " + p.getPrivacy() + "\nComentários:\n");
                         textArea.append(p.getCommentsToString());
@@ -810,6 +816,7 @@ public class MainScreen extends javax.swing.JFrame {
 
             }
         }
+    }
     }//GEN-LAST:event_showFriendPostActionPerformed
 
     private void openFilePostsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_openFilePostsButtonActionPerformed
@@ -849,18 +856,32 @@ public class MainScreen extends javax.swing.JFrame {
     }//GEN-LAST:event_showFriendsActionPerformed
 
     private void commentPostButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_commentPostButtonActionPerformed
+        Users.setVisible(false);
         User user1 = getUserFromComboBox();
+        User user2 = usertemp;
+        usertemp=null;
         String s = "Insira o ID do Post";
-        String nome = JOptionPane.showInputDialog(s);
-        long idPost = Long.parseLong(nome);
-        Post p = user1.getPostByID(idPost);
+        String idInserted = JOptionPane.showInputDialog(s);
+        
+        if (idInserted == null) {
+            this.setEnabled(true);
+            this.toFront();
+            this.loadLinks();
+            commentPostButton.setVisible(false);
+            Users.setVisible(true);
+        } else{
+        long idPost = Long.parseLong(idInserted);
+        Post p = user2.getPostByID(idPost);
         Calendar dateComment;
         dateComment=Calendar.getInstance();
         String comentario = JOptionPane.showInputDialog("Insira o comentário");
         p.ComentarPost(new Comment(dateComment, comentario, user1));
         
-        commentPostButton.setVisible(false);
+        JOptionPane.showMessageDialog(this, "Comentário adicionado com sucesso", "INFO", JOptionPane.INFORMATION_MESSAGE);
         
+        commentPostButton.setVisible(false);
+        Users.setVisible(true);
+        }
     }//GEN-LAST:event_commentPostButtonActionPerformed
 
     /**
